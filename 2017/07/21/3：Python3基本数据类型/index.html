@@ -1,0 +1,276 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>3：Python3基本数据类型 | 常灿光个人博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">3：Python3基本数据类型</h1><a id="logo" href="/.">常灿光个人博客</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">3：Python3基本数据类型</h1><div class="post-meta">Jul 21, 2017<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><p>Python中的变量不需要声明。每个变量在使用前都必须赋值，变量赋值以后该变量才会被创建。在Python中，变量就是变量，它没有类型，我们所说的“类型”是变量<strong>所指的内存中对象的类型</strong>。</p>
+<p>等号（=）用来给变量赋值。</p>
+<p>等号（=）运算符左边是一个<strong>变量名</strong>，等号（=）运算符右边是存储在<strong>变量中的值</strong>。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line"> </div><div class="line">counter = 100          # 整型变量</div><div class="line">miles   = 1000.0       # 浮点型变量</div><div class="line">name    = &quot;runoob&quot;     # 字符串</div><div class="line"> </div><div class="line">print (counter)</div><div class="line">print (miles)</div><div class="line">print (name)</div></pre></td></tr></table></figure>
+<p>执行以上程序，会输出如下结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">100</div><div class="line">1000.0</div><div class="line">runoob</div></pre></td></tr></table></figure>
+<h1 id="多个变量赋值"><a href="#多个变量赋值" class="headerlink" title="多个变量赋值"></a>多个变量赋值</h1><p>Python允许同时为多个变量赋值。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a = b = c = 1</div></pre></td></tr></table></figure>
+<p>以上实例，创建一个整形对象，值为1，三个变量被分配到相同的内存空间上。</p>
+<p>也可以为多个对象指定多个变量。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a, b, c = 1, 2, &quot;runoob&quot;</div></pre></td></tr></table></figure>
+<p>以上实例，两个整形对象1和2被分配给变量a和b,字符串对象 “runoob” 分配给变量 c。</p>
+<h1 id="标准数据类型"><a href="#标准数据类型" class="headerlink" title="标准数据类型"></a>标准数据类型</h1><p>Python3中有六个标准的数据类型</p>
+<ul>
+<li>Number（数字）</li>
+<li>String（字符串）</li>
+<li>List（列表）</li>
+<li>Tuple（元组）</li>
+<li>Sets（集合）</li>
+<li>Dictionary（字典）</li>
+</ul>
+<h1 id="Number-数字"><a href="#Number-数字" class="headerlink" title="Number(数字)"></a>Number(数字)</h1><p>Python3支持<strong>int、float、bool、complex(复数)。</strong></p>
+<p>在Python3里，只有一种整数类型int，表示为长整形，没有Python2中的Long，像大多数语言一样，数值类型的赋值和计算都是很直观的。</p>
+<p>内置的type()函数可以用来查询变量所指的对象类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line"></div><div class="line">a, b, c, d = 20, 5.5, True, 4 + 3j</div><div class="line">print(type(a), type(b), type(c), type(d))</div><div class="line"></div><div class="line">//结果如下</div><div class="line">&lt;class &apos;int&apos;&gt; &lt;class &apos;float&apos;&gt; &lt;class &apos;bool&apos;&gt; &lt;class &apos;complex&apos;&gt;</div></pre></td></tr></table></figure>
+<p>此外还可以用isinstance来判断属于哪个类型：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line"></div><div class="line">a = 111</div><div class="line">print(isinstance(a, int));</div><div class="line">print(isinstance(a, float));</div><div class="line">print(isinstance(a, bool));</div><div class="line">print(isinstance(a, complex));</div><div class="line">//结果如下</div><div class="line">True</div><div class="line">False</div><div class="line">False</div><div class="line">False</div></pre></td></tr></table></figure>
+<p>isinstance和type的区别在于：</p>
+<ul>
+<li>type()不会认为子类是一种父类类型</li>
+<li>isinstance()会认为子类是一种父类类型</li>
+</ul>
+<p><strong>注意</strong>：在Python2中是没有布尔类型的，它用数字0表示False，用1表示True。到Python3中，把Ture和False定义成关键字，但他们的值还是1还是0，它们可以和数字相加。</p>
+<p>当你指定一个值时候，Number对象就会被创建：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var1 = 1</div><div class="line">var2 = 10</div></pre></td></tr></table></figure>
+<p>也可以使用del语句删除一些对象引用。</p>
+<p>del语句的语法是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">del var1[,var2[,var3[....,varN]]]]</div></pre></td></tr></table></figure>
+<p>也可以通过使用del语句删除单个或多个对象。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">del var</div><div class="line">del var_a, var_b</div></pre></td></tr></table></figure>
+<p><strong>数值计算</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;5 + 4  # 加法</div><div class="line">9</div><div class="line">&gt;&gt;&gt; 4.3 - 2 # 减法</div><div class="line">2.3</div><div class="line">&gt;&gt;&gt; 3 * 7  # 乘法</div><div class="line">21</div><div class="line">&gt;&gt;&gt; 2 / 4  # 除法，得到一个浮点数</div><div class="line">0.5</div><div class="line">&gt;&gt;&gt; 2 // 4 # 除法，得到一个整数</div><div class="line">0</div><div class="line">&gt;&gt;&gt; 17 % 3 # 取余 </div><div class="line">2</div><div class="line">&gt;&gt;&gt; 2 ** 5 # 乘方</div><div class="line">32</div></pre></td></tr></table></figure>
+<p><strong>注意：</strong></p>
+<ul>
+<li>1：Python可以同时为多个变量赋值，如a,b = 1,2。</li>
+<li>2：一个变量可以通过赋值指向不同类型的对象。</li>
+<li>3：数值的除法(/)总是返回一个浮点数，要获取整数使用//操作符</li>
+<li>4：在混合计算时候，Python会把整形转换成为浮点数</li>
+</ul>
+<p><strong>数值类型实例</strong></p>
+<table>
+<thead>
+<tr>
+<th>int</th>
+<th>float</th>
+<th>complex</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>0.0</td>
+<td>3.14j</td>
+</tr>
+<tr>
+<td>100</td>
+<td>15.20</td>
+<td>45.j</td>
+</tr>
+<tr>
+<td>-786</td>
+<td>-21.9</td>
+<td>9.322e-36j</td>
+</tr>
+<tr>
+<td>080</td>
+<td>32.3+e18</td>
+<td>.876j</td>
+</tr>
+<tr>
+<td>-0490</td>
+<td>-90.</td>
+<td>-.6545+0J</td>
+</tr>
+<tr>
+<td>-0x260</td>
+<td>-32.54e100</td>
+<td>3e+26J</td>
+</tr>
+<tr>
+<td>0x69</td>
+<td>70.2-E12</td>
+<td>4.53e-7j</td>
+</tr>
+</tbody>
+</table>
+<p>python还支持复数，复数由实数部分和虚数部分构成，可以用a+bj或者complex(a,b)表示，复数的实部a和虚部b都是浮点类型。</p>
+<h1 id="String-字符串"><a href="#String-字符串" class="headerlink" title="String(字符串)"></a>String(字符串)</h1><p>python中的字符串由单引号(‘’)或者双引号(“”)括起来，同时使用反斜杠(\)转义特殊字符。</p>
+<p>字符串截取的语法格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">变量[头下标：尾下标]</div></pre></td></tr></table></figure>
+<p>从头下标开始，不包含尾下标。</p>
+<p>索引值以0为开始值，-1为从末尾的开始位置。</p>
+<p>加号(+)是字符串的连接符，星号(*)表示复制当前字符串，紧跟的数字为复制的次数。实例如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line"></div><div class="line">str = &apos;Runoob&apos;</div><div class="line"></div><div class="line">print(&quot;1:&quot;+str)  # 输出字符串</div><div class="line">print(&quot;2:&quot;+str[0:-1])  # 输出第一个到倒数第二个的所有字符</div><div class="line">print(&quot;3:&quot;+str[0])  # 输出字符串第一个字符</div><div class="line">print(&quot;4:&quot;+str[2:5])  # 输出从第三个开始到第五个的字符</div><div class="line">print(&quot;5:&quot;+str[2:])  # 输出从第三个开始的后的所有字符</div><div class="line">print(&quot;6:&quot;+str * 2)  # 输出字符串两次</div><div class="line">print(&quot;7:&quot;+str + &quot;TEST&quot;)  # 连接字符串</div><div class="line">print(&quot;8:&quot;+str[-3:-1])  # 输出倒数第三个到倒数第二个的所有字符</div></pre></td></tr></table></figure>
+<p>执行以上程序会输出以下结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">1:Runoob</div><div class="line">2:Runoo</div><div class="line">3:R</div><div class="line">4:noo</div><div class="line">5:noob</div><div class="line">6:RunoobRunoob</div><div class="line">7:RunoobTEST</div><div class="line">8:oo</div></pre></td></tr></table></figure>
+<p>Python使用反斜杠(\)转义特殊字符，如果你不想让反斜杠发生转义，可以在字符串前面添加一个r，表示原始字符串。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line"></div><div class="line">print(&apos;Ru\noob&apos;)</div><div class="line"></div><div class="line">print(r&apos;Ru\noob&apos;)</div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Ru</div><div class="line">oob</div><div class="line">Ru\noob</div></pre></td></tr></table></figure>
+<p>另外，反斜杠(\)可以作为续行符，表示下一行是上一行的延续，也可以使用”””…”””或者’’’…’’’跨越多行。</p>
+<p>注意，Python没有单独的字符类型，一个字符类型就是长度为1的字符串。</p>
+<p>实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line"></div><div class="line">word = &apos;Python&apos;</div><div class="line">print(word[0],word[5])</div><div class="line">print(word[-1],word[-6])</div></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">P n</div><div class="line">n P</div></pre></td></tr></table></figure>
+<p>与C字符串不同的是，Python字符串不能被改变。向一个索引位置赋值，比如word[0]=’m’会导致错误。</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>1：反斜杠可以用来转义，使用r可以用来让反斜杠不发生转义。</li>
+<li>2：字符串可以用+运算符连接在一起，用*运算符重复。</li>
+<li>3：Python中的字符串有两种索引方式，从左往右从0开始，从右往左从-1开始。</li>
+<li>4：Python中的字符串不能改变。</li>
+</ul>
+<h1 id="List-列表"><a href="#List-列表" class="headerlink" title="List(列表)"></a>List(列表)</h1><p>List(列表) 是Python中使用最频繁最频繁最频繁的数据类型。</p>
+<p>列表可以完成大多数集合类的数据结构实现，列表中元素的类型可以不相同，它支持数字、字符串甚至可以包含列表（所谓嵌套）。</p>
+<p>列表是写在方括号([])之间、用逗号分割开的元素列表。</p>
+<p>和字符串一样，列表同样可以被索引和截取，列表被截取后返回一个包含所元素的新列表。</p>
+<p>列表截取的语法格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">变量[头下标:尾下标]</div></pre></td></tr></table></figure>
+<p>和字符串一样，索引值以0为开始值，-1为从末尾的开始位置。</p>
+<p>加号（+）是列表连接运算符，星号（*）是重复操作，如下实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line"></div><div class="line">list = [&apos;abcd&apos;, 786, 2.23, &apos;runoob&apos;, 70.2]</div><div class="line">tinylist = [123, &apos;runoob&apos;]</div><div class="line"></div><div class="line">print(list)  # 输出完整列表</div><div class="line">print(list[0])  # 输出列表第一个元素</div><div class="line">print(list[1:3])  # 从第二个开始输出到第三个元素</div><div class="line">print(list[2:])  # 输出从第三个元素开始的所有元素</div><div class="line">print(tinylist * 2)  # 输出两次列表</div><div class="line">print(list + tinylist)  # 连接列表</div></pre></td></tr></table></figure>
+<p>以上实例输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[&apos;abcd&apos;, 786, 2.23, &apos;runoob&apos;, 70.2]</div><div class="line">abcd</div><div class="line">[786, 2.23]</div><div class="line">[2.23, &apos;runoob&apos;, 70.2]</div><div class="line">[123, &apos;runoob&apos;, 123, &apos;runoob&apos;]</div><div class="line">[&apos;abcd&apos;, 786, 2.23, &apos;runoob&apos;, 70.2, 123, &apos;runoob&apos;]</div></pre></td></tr></table></figure>
+<p>与Python字符串不一样的是，列表中的元素是可以改变的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line"></div><div class="line">a = [1, 2, 3, 4, 5, 6]</div><div class="line">a[0] = 9</div><div class="line">a[2:5] = [13, 14, 15]</div><div class="line">print(a)</div><div class="line">a[2:5] = []   # 删除</div><div class="line">print(a)</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[9, 2, 13, 14, 15, 6]</div><div class="line">[9, 2, 6]</div></pre></td></tr></table></figure>
+<p>List内置了有很多方法，例如append()，pop()等等，这在后面后谈到。</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>1：List写在中括号之间，元素用逗号隔开。</li>
+<li>2：和字符串一样，list可以被索引和切片。</li>
+<li>3：List可以使用+操作符进行拼接。</li>
+<li>4：List中的元素是可以改变的。</li>
+</ul>
+<h1 id="Tuple-元组"><a href="#Tuple-元组" class="headerlink" title="Tuple(元组)"></a>Tuple(元组)</h1><p>元组(tuple)与列表相似，不同之处在于元组的元素不能修改，元组写在小括号()里面，元素之间用逗号隔开。</p>
+<p>元组中的元素类型也可以不相同。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line"></div><div class="line">tuple = (&apos;abcd&apos;, 786, 2.23, &apos;runoob&apos;, 70.2)</div><div class="line">tinytuple = (123, &apos;runoob&apos;)</div><div class="line"></div><div class="line">print(tuple)  # 输出完整元组</div><div class="line">print(tuple[0])  # 输出元组的第一个元素</div><div class="line">print(tuple[1:3])  # 输出从第二个元素开始到第三个元素</div><div class="line">print(tuple[2:])  # 输出从第三个元素开始的所有元素</div><div class="line">print(tinytuple * 2)  # 输出两次元组</div><div class="line">print(tuple + tinytuple)  # 连接元组</div></pre></td></tr></table></figure>
+<p>以上实例输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">(&apos;abcd&apos;, 786, 2.23, &apos;runoob&apos;, 70.2)</div><div class="line">abcd</div><div class="line">(786, 2.23)</div><div class="line">(2.23, &apos;runoob&apos;, 70.2)</div><div class="line">(123, &apos;runoob&apos;, 123, &apos;runoob&apos;)</div><div class="line">(&apos;abcd&apos;, 786, 2.23, &apos;runoob&apos;, 70.2, 123, &apos;runoob&apos;)</div></pre></td></tr></table></figure>
+<p>元组与字符串类似，可以被索引且下标索引从0开始，-1为从末尾开始的位置，也可以进行截取。</p>
+<p>其实可以把字符串看成一种特殊的元组。</p>
+<p>上面说了，元组元素不能被修改，下面程序验证：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line"></div><div class="line">tup = (1, 2, 3, 4, 5, 6)</div><div class="line">print(tup[0])</div><div class="line">print(tup[1:5])</div><div class="line">tup[0] = 11  # 修改元组元素的操作是非法的</div></pre></td></tr></table></figure>
+<p>结果如下，运行出错了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1</div><div class="line">(2, 3, 4, 5)</div><div class="line">  File &quot;E:\PycharmProjects\PyStudyBase\HelloWorld.py&quot;, line 6, in &lt;module&gt;</div><div class="line">    tup[0] = 11  # 修改元组元素的操作是非法的</div><div class="line">TypeError: &apos;tuple&apos; object does not support item assignment</div></pre></td></tr></table></figure>
+<p>虽然tuple的元素不可以改变，但它可以包含可变的对象，比如list列表。</p>
+<p>构造一个包含0个和1个元素的元组比较特殊，所以有一些额外的语法规则。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tup1 = ()    # 空元组</div><div class="line">tup2 = (20,) # 一个元素，需要在元素后添加逗号</div></pre></td></tr></table></figure>
+<p>string、list和tuple都属于sequence(序列)。</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>1：与字符串一样，元组的元素不能修改。</li>
+<li>2：元组也可以被索引和切片，方法一样。</li>
+<li>3：注意构造包含0个和1个元素的元组的特殊语法规则。</li>
+<li>4：元组也可以使用+操作符进行拼接。</li>
+</ul>
+<h1 id="Set-集合"><a href="#Set-集合" class="headerlink" title="Set(集合)"></a>Set(集合)</h1><p>集合（set）是一个无序不重复元素的序列。</p>
+<p>基本功能是进行成员关系测试和删除重复元素。</p>
+<p>可以使用大括号{}或者set()函数创建集合，注意：创建一个空集合必须用set()而不是{}，因为{}是用来创建一个空字典。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line"></div><div class="line">student = &#123;&apos;Tom&apos;, &apos;Jim&apos;, &apos;Mary&apos;, &apos;Tom&apos;, &apos;Jack&apos;, &apos;Rose&apos;&#125;</div><div class="line">print(student)  # 输出集合，重复的元素被自动去掉</div><div class="line"># 成员测试</div><div class="line">if(&apos;Rose&apos; in student) :</div><div class="line">    print(&apos;Rose 在集合中&apos;)</div><div class="line">else :</div><div class="line">    print(&apos;Rose 不在集合中&apos;)</div><div class="line"></div><div class="line"></div><div class="line"># set可以进行集合运算</div><div class="line">a = set(&apos;abracadabra&apos;)</div><div class="line">b = set(&apos;alacazam&apos;)</div><div class="line"></div><div class="line">print(a)</div><div class="line">print(b)</div><div class="line">print(a - b)  # a和b的差集</div><div class="line">print(a | b)  # a和b的并集</div><div class="line">print(a &amp; b)  # a和b的交集</div><div class="line">print(a ^ b)  # a和b中不同时存在的元素</div></pre></td></tr></table></figure>
+<p>以上实例输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;&apos;Jim&apos;, &apos;Jack&apos;, &apos;Mary&apos;, &apos;Tom&apos;, &apos;Rose&apos;&#125;</div><div class="line">Rose 在集合中</div><div class="line">&#123;&apos;d&apos;, &apos;r&apos;, &apos;c&apos;, &apos;b&apos;, &apos;a&apos;&#125;</div><div class="line">&#123;&apos;c&apos;, &apos;m&apos;, &apos;l&apos;, &apos;z&apos;, &apos;a&apos;&#125;</div><div class="line">&#123;&apos;b&apos;, &apos;d&apos;, &apos;r&apos;&#125;</div><div class="line">&#123;&apos;d&apos;, &apos;r&apos;, &apos;c&apos;, &apos;m&apos;, &apos;l&apos;, &apos;b&apos;, &apos;z&apos;, &apos;a&apos;&#125;</div><div class="line">&#123;&apos;a&apos;, &apos;c&apos;&#125;</div><div class="line">&#123;&apos;d&apos;, &apos;r&apos;, &apos;m&apos;, &apos;l&apos;, &apos;b&apos;, &apos;z&apos;&#125;</div></pre></td></tr></table></figure>
+<h1 id="Dictionary-字典"><a href="#Dictionary-字典" class="headerlink" title="Dictionary(字典)"></a>Dictionary(字典)</h1><p>字典(dictionary)是Python中另一个非常有用的内置数据类型。</p>
+<p>列表是有序的对象集合，字典是无序的对象集合。/两者之间的区别在于：字典当中的元素是通过键来存取的，而不是通过偏移存取的。</p>
+<p>字典是一种映射类型，字典使用“{}标识，它是一个无序的键(key):值(value)对集合。</p>
+<p>键(key)必须使用不可变类型。</p>
+<p>在同一个字典中，键(key)必须是唯一的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line"></div><div class="line">dict = &#123;&#125;</div><div class="line">dict[&apos;one&apos;] = &quot;1 - 菜鸟教程&quot;</div><div class="line">dict[2] = &quot;2  -  菜鸟工具&quot;</div><div class="line"></div><div class="line">tinydict = &#123;&apos;name&apos;: &apos;runoob&apos;,&apos;code&apos;:1, &apos;site&apos;: &apos;www.runoob.com&apos;&#125;</div><div class="line"></div><div class="line">print (dict[&apos;one&apos;])       # 输出键为 &apos;one&apos; 的值</div><div class="line">print (dict[2])           # 输出键为 2 的值</div><div class="line">print (tinydict)          # 输出完整的字典</div><div class="line">print (tinydict.keys())   # 输出所有键</div><div class="line">print (tinydict.values()) # 输出所有值</div></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1 - 菜鸟教程</div><div class="line">2  -  菜鸟工具</div><div class="line">&#123;&apos;name&apos;: &apos;runoob&apos;, &apos;code&apos;: 1, &apos;site&apos;: &apos;www.runoob.com&apos;&#125;</div><div class="line">dict_keys([&apos;name&apos;, &apos;code&apos;, &apos;site&apos;])</div><div class="line">dict_values([&apos;runoob&apos;, 1, &apos;www.runoob.com&apos;])</div></pre></td></tr></table></figure>
+<p>另外，字典类型也有一些内置函数，例如clear()、key()、values()等。</p>
+<p><strong>注意：</strong></p>
+<ul>
+<li>1：字典是一种映射类型，它的元素是键值对。</li>
+<li>2：字典的关键字必须为不可变的类型，且不能重复。</li>
+<li>3：创建空字典使用{}。</li>
+</ul>
+<h1 id="Python数据类型转换"><a href="#Python数据类型转换" class="headerlink" title="Python数据类型转换"></a>Python数据类型转换</h1><p>有时候，我们需要对数据内置的类型进行转换，数据类型的转换，你只需要将数据类型作为函数名即可。</p>
+<p>以下几个内置的函数可以执行数据类型之间的转换。这些函数返回一个新的对象，表示转换的值。</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>int(x [,base])</td>
+<td>将x转换为一个整数</td>
+</tr>
+<tr>
+<td>float(x)</td>
+<td>将x转换到一个浮点数</td>
+</tr>
+<tr>
+<td>complex(real [,imag])</td>
+<td>创建一个复数</td>
+</tr>
+<tr>
+<td>str(x)</td>
+<td>将对象 x 转换为字符串</td>
+</tr>
+<tr>
+<td>repr(x)</td>
+<td>将对象 x 转换为表达式字符串</td>
+</tr>
+<tr>
+<td>eval(str)</td>
+<td>用来计算在字符串中的有效Python表达式,并返回一个对象</td>
+</tr>
+<tr>
+<td>tuple(s)</td>
+<td>将序列 s 转换为一个元组</td>
+</tr>
+<tr>
+<td>list(s)</td>
+<td>将序列 s 转换为一个列表</td>
+</tr>
+<tr>
+<td>set(s)</td>
+<td>转换为可变集合</td>
+</tr>
+<tr>
+<td>dict(d)</td>
+<td>创建一个字典。d 必须是一个序列 (key,value)元组。</td>
+</tr>
+<tr>
+<td>frozenset(s)</td>
+<td>转换为不可变集合</td>
+</tr>
+<tr>
+<td>chr(x)</td>
+<td>将一个整数转换为一个字符</td>
+</tr>
+<tr>
+<td>unichr(x)</td>
+<td>将一个整数转换为Unicode字符</td>
+</tr>
+<tr>
+<td>ord(x)</td>
+<td>将一个字符转换为它的整数值</td>
+</tr>
+<tr>
+<td>hex(x)</td>
+<td>将一个整数转换为一个十六进制字符串</td>
+</tr>
+<tr>
+<td>oct(x)</td>
+<td>将一个整数转换为一个八进制字符串</td>
+</tr>
+</tbody>
+</table>
+<h1 id="笔记列表"><a href="#笔记列表" class="headerlink" title="笔记列表"></a>笔记列表</h1><h2 id="元组（小拓展）"><a href="#元组（小拓展）" class="headerlink" title="元组（小拓展）"></a>元组（小拓展）</h2><p>一般来说，函数的返回值一般为一个。</p>
+<p>而函数返回多个值的时候，是以元组的方式返回的。</p>
+<p>示例（命令行下）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line"></div><div class="line">def example(a,b):</div><div class="line">    return (a,b);</div><div class="line"></div><div class="line">print(type (example(3,4)))</div></pre></td></tr></table></figure>
+<p>python中的函数还可以接收可变长参数，比如以 “*” 开头的的参数名，会将所有的参数收集到一个元组上。</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">def test(*args):</div><div class="line">    print(args)</div><div class="line">    return args</div><div class="line">print(type(test(1,2,3,4)))</div></pre></td></tr></table></figure>
+<p>python 与 C 语言和 Java 语言的一点不同，表现在它的变量不需要声明变量类型，这是因为像 C 语言和 Java 语言来说，它们是静态的，而 python 是动态的，变量的类型由赋予它的值来决定，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">a = 1</div><div class="line">a = 1.001</div><div class="line">a = &quot;python&quot;</div><div class="line">print(a)</div><div class="line">python</div></pre></td></tr></table></figure>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://201216323.tech/2017/07/21/3：Python3基本数据类型/" data-id="cj5dv0zab00031csgt2itdn96" class="article-share-link">分享</a><div class="tags"><a href="/tags/Python/">Python</a></div><div class="post-nav"><a href="/2017/07/19/2：Python3-基础语法/" class="next">2：Python3 基础语法</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://201216323.tech"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/Python/" style="font-size: 15px;">Python</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/07/21/3：Python3基本数据类型/">3：Python3基本数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/2：Python3-基础语法/">2：Python3 基础语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/18/1：Python基础教程/">1：Python基础教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/15/hello-world/">Hello World</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2017 <a href="/." rel="nofollow">常灿光个人博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
