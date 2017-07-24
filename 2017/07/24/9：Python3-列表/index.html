@@ -1,0 +1,182 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>9：Python3 列表 | 常灿光个人博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">9：Python3 列表</h1><a id="logo" href="/.">常灿光个人博客</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">9：Python3 列表</h1><div class="post-meta">Jul 24, 2017<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><p>序列是Python中最基本的数据结构，序列中的每一个元素都分配一个数字–可以称为它的位置或者索引，第一个索引是0，第二个索引是1，以此类推。</p>
+<p>Python有6个序列的内置类型，但最常见的是列表和元组。</p>
+<p>序列都可以进行的操作包括索引、切片、加、乘和检查成员。</p>
+<p>此外，Python已经内置确定序列的长度以及确定最大和最小的元素的方法。</p>
+<p>列表是最常用的Python数据类型，它可以作为一个方括号（中括号）内的逗号分隔值出现。</p>
+<p>列表的数据项不需要具有相同的类型</p>
+<p>创建一个列表，只要把逗号分割的不同的数据项使用中括号括起来就可以了，，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">list1 = [&apos;Google&apos;, &apos;Runoob&apos;, 1997, 2000];</div><div class="line">list2 = [1, 2, 3, 4, 5 ];</div><div class="line">list3 = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;];</div></pre></td></tr></table></figure>
+<p>与字符串索引一样，列表索引从0开始，，列表可以进行截取、组合等。。</p>
+<h1 id="访问列表中的值"><a href="#访问列表中的值" class="headerlink" title="访问列表中的值"></a>访问列表中的值</h1><p>使用下标索引来访问列表中的值，同样你也可以使用中括号的形式截取字符，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line"></div><div class="line">list1 = [&apos;Google&apos;, &apos;Runoob&apos;, 1997, 2000];</div><div class="line">list2 = [1, 2, 3, 4, 5, 6, 7];</div><div class="line"></div><div class="line">print(&quot;list1[0]: &quot;, list1[0])</div><div class="line">print(&quot;list2[1:5]: &quot;, list2[1:5])</div></pre></td></tr></table></figure>
+<p>以上实例输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">list1[0]:  Google</div><div class="line">list2[1:5]:  [2, 3, 4, 5]</div></pre></td></tr></table></figure></p>
+<h1 id="更新列表"><a href="#更新列表" class="headerlink" title="更新列表"></a>更新列表</h1><p>你可以对列表的数据项进行修改或者更新，你也可以使用append()方法来添加列表，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line"> </div><div class="line">list = [&apos;Google&apos;, &apos;Runoob&apos;, 1997, 2000]</div><div class="line"> </div><div class="line">print (&quot;第三个元素为 : &quot;, list[2])</div><div class="line">list[2] = 2001</div><div class="line">print (&quot;更新后的第三个元素为 : &quot;, list[2])</div></pre></td></tr></table></figure>
+<p><strong>注意：</strong>我们会在接下来的章节讨论append()方法的使用</p>
+<p>以上实例输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">第三个元素为 :  1997</div><div class="line">更新后的第三个元素为 :  2001</div></pre></td></tr></table></figure></p>
+<h1 id="删除列表元素"><a href="#删除列表元素" class="headerlink" title="删除列表元素"></a>删除列表元素</h1><p>可以使用del语句来删除列表的元素，如下实例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#!/usr/bin/python3</div><div class="line"> </div><div class="line">list = [&apos;Google&apos;, &apos;Runoob&apos;, 1997, 2000]</div><div class="line"> </div><div class="line">print (list)</div><div class="line">del list[2]</div><div class="line">print (&quot;删除第三个元素 : &quot;, list)</div></pre></td></tr></table></figure>
+<p><strong>注意：</strong>我们会在接下来的章节讨论remove()方法的使用</p>
+<p>以上实例输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">删除第三个元素 : [&apos;Google&apos;, &apos;Runoob&apos;, 2000]</div></pre></td></tr></table></figure>
+<h1 id="Python列表脚本操作符"><a href="#Python列表脚本操作符" class="headerlink" title="Python列表脚本操作符"></a>Python列表脚本操作符</h1><p>列表对+和<em>的操作符与字符串相似，，。+号用于组合列表，</em>号用于重复列表</p>
+<p>如下所示：</p>
+<table>
+<thead>
+<tr>
+<th>Python 表达式</th>
+<th>结果</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>len([1, 2, 3])</td>
+<td>3</td>
+<td>长度</td>
+</tr>
+<tr>
+<td>[1, 2, 3] + [4, 5, 6]</td>
+<td>[1, 2, 3, 4, 5, 6]</td>
+<td>组合</td>
+</tr>
+<tr>
+<td>[‘Hi!’] * 4</td>
+<td>[‘Hi!’, ‘Hi!’, ‘Hi!’, ‘Hi!’]</td>
+<td>重复</td>
+</tr>
+<tr>
+<td>3 in [1, 2, 3]</td>
+<td>True</td>
+<td>元素是否存在于列表中</td>
+</tr>
+<tr>
+<td>for x in [1, 2, 3]: print(x, end=” “)</td>
+<td>1 2 3</td>
+<td>迭代</td>
+</tr>
+</tbody>
+</table>
+<h1 id="Python列表截取与拼接"><a href="#Python列表截取与拼接" class="headerlink" title="Python列表截取与拼接"></a>Python列表截取与拼接</h1><p>Python的列表截取与字符串操作类型，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">L=[&apos;Google&apos;, &apos;Runoob&apos;, &apos;Taobao&apos;]</div></pre></td></tr></table></figure>
+<p>操作：</p>
+<table>
+<thead>
+<tr>
+<th>Python 表达式</th>
+<th>结果</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L[2]</td>
+<td>‘Taobao’</td>
+<td>读取第三个元素</td>
+</tr>
+<tr>
+<td>L[-2]</td>
+<td>‘Runoob’</td>
+<td>从右侧开始读取倒数第二个元素: count from the right</td>
+</tr>
+<tr>
+<td>L[1:]</td>
+<td>[‘Runoob’, ‘Taobao’]</td>
+<td>输出从第二个元素开始后的所有元素</td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;L=[&apos;Google&apos;, &apos;Runoob&apos;, &apos;Taobao&apos;]</div><div class="line">&gt;&gt;&gt; L[2]</div><div class="line">&apos;Taobao&apos;</div><div class="line">&gt;&gt;&gt; L[-2]</div><div class="line">&apos;Runoob&apos;</div><div class="line">&gt;&gt;&gt; L[1:]</div><div class="line">[&apos;Runoob&apos;, &apos;Taobao&apos;]</div><div class="line">&gt;&gt;&gt;</div></pre></td></tr></table></figure>
+<p>列表还支持拼接操作：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;squares = [1, 4, 9, 16, 25]</div><div class="line">&gt;&gt;&gt; squares + [36, 49, 64, 81, 100]</div><div class="line">[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]</div></pre></td></tr></table></figure>
+<h1 id="嵌套列表"><a href="#嵌套列表" class="headerlink" title="嵌套列表"></a>嵌套列表</h1><p>使用嵌套列表即在列表中创建其它列表，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;a = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]</div><div class="line">&gt;&gt;&gt; n = [1, 2, 3]</div><div class="line">&gt;&gt;&gt; x = [a, n]</div><div class="line">&gt;&gt;&gt; x</div><div class="line">[[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;], [1, 2, 3]]</div><div class="line">&gt;&gt;&gt; x[0]</div><div class="line">[&apos;a&apos;, &apos;b&apos;, &apos;c&apos;]</div><div class="line">&gt;&gt;&gt; x[0][1]</div><div class="line">&apos;b&apos;</div></pre></td></tr></table></figure>
+<h1 id="Python-列表函数-amp-方法"><a href="#Python-列表函数-amp-方法" class="headerlink" title="Python 列表函数&amp;方法"></a>Python 列表函数&amp;方法</h1><p>Python包含以下函数：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>函数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>len(list) 列表元素个数</td>
+</tr>
+<tr>
+<td>2</td>
+<td>max(list) 返回列表元素最大值</td>
+</tr>
+<tr>
+<td>3</td>
+<td>min(list) 返回列表元素最小值</td>
+</tr>
+<tr>
+<td>4</td>
+<td>list(seq) 将元组转换为列表</td>
+</tr>
+</tbody>
+</table>
+<p>Python 包含以下方法：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>list.append(obj) 在列表末尾添加新的对象</td>
+</tr>
+<tr>
+<td>2</td>
+<td>list.count(obj) 统计某个元素在列表中出现的次数</td>
+</tr>
+<tr>
+<td>3</td>
+<td>list.extend(seq) 在列表末尾一次性追加另一个序列中的多个值（用新列表扩展原来的列表）</td>
+</tr>
+<tr>
+<td>4</td>
+<td>list.index(obj) 从列表中找出某个值第一个匹配项的索引位置</td>
+</tr>
+<tr>
+<td>5</td>
+<td>list.insert(index, obj) 将对象插入列表</td>
+</tr>
+<tr>
+<td>6</td>
+<td>list.pop(obj=list[-1])移除列表中的一个元素（默认最后一个元素），并且返回该元素的值</td>
+</tr>
+<tr>
+<td>7</td>
+<td>list.remove(obj) 移除列表中某个值的第一个匹配项</td>
+</tr>
+<tr>
+<td>8</td>
+<td>list.reverse() 反向列表中元素</td>
+</tr>
+<tr>
+<td>9</td>
+<td>list.sort([func]) 对原列表进行排序</td>
+</tr>
+<tr>
+<td>10</td>
+<td>list.clear() 清空列表</td>
+</tr>
+<tr>
+<td>11</td>
+<td>list.copy() 复制列表</td>
+</tr>
+</tbody>
+</table>
+<p><strong>备注</strong></p>
+<p>我们可以看到l后面跟了两个冒号，还有个 2 ，效果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; l = [i for i in range(0,15)]</div><div class="line">&gt;&gt;&gt; print(l[::2])</div><div class="line">[0, 2, 4, 6, 8, 10, 12, 14]</div></pre></td></tr></table></figure>
+<p>我理解为:</p>
+<p>l[start:end:span]</p>
+<p>遍历 [start,end)，间隔为 span，当 span&gt;0 时顺序遍历, 当 span&lt;0 时，逆着遍历。<br>start 不输入则默认为 0，end 不输入默认为长度。</p>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://201216323.tech/2017/07/24/9：Python3-列表/" data-id="cj5ht2tf50005vwsg26am8wu3" class="article-share-link">分享</a><div class="tags"><a href="/tags/Python/">Python</a></div><div class="post-nav"><a href="/2017/07/24/10：Python3-元组/" class="pre">10：Python3 元组</a><a href="/2017/07/24/8：Python3-字符串/" class="next">8：Python3 字符串</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://201216323.tech"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/Python/" style="font-size: 15px;">Python</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/10：Python3-元组/">10：Python3 元组</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/9：Python3-列表/">9：Python3 列表</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/8：Python3-字符串/">8：Python3 字符串</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/22/7：Python3-数字-Number/">7：Python3 数字(Number)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/21/6：Python3-运算符/">6：Python3 运算符</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/21/5：Python3-注释/">5：Python3 注释</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/21/4：Python3解释器/">4：Python3解释器</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/21/3：Python3基本数据类型/">3：Python3基本数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/19/2：Python3-基础语法/">2：Python3 基础语法</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/18/1：Python基础教程/">1：Python基础教程</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2017 <a href="/." rel="nofollow">常灿光个人博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
