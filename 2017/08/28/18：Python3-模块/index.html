@@ -1,0 +1,133 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>18：Python3-模块 | 常灿光个人博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">18：Python3-模块</h1><a id="logo" href="/.">常灿光个人博客</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">18：Python3-模块</h1><div class="post-meta">Aug 28, 2017<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><h1 id="Python3-模块"><a href="#Python3-模块" class="headerlink" title="Python3 模块"></a>Python3 模块</h1><p>在前面的几个章节中，我们大部分是在脚本上使用python解释器来编程的，如果你从Python解释器退出再进入，那么你定义的所有的方法和变量就都消失了。<br>为此Python提供了一个方法，把这些定义存放在文件中，为一些脚本或者交互式的解释器实例使用，这个文件被称为模块。模块是一个包含所有你定义的函数和变量的文件，其后缀名是.py。模块可以被别的程序引用，以使用该模块中的函数和功能。这也是使用Python标准库的方法。</p>
+<p>下面是一个使用python标准库中模块的例子。</p>
+<pre><code>#!/usr/bin/python3
+import sys
+print(&quot;命令行参数如下：&quot;)
+for i in sys.argv:
+    print(i)
+print(&apos;\n\nPython 路径为：&apos;, sys.path, &apos;\n&apos;)
+</code></pre><p>执行结果如下所示：</p>
+<pre><code>命令行参数如下：
+C:\Program Files\JetBrains\PyCharm 2017.1.4\helpers\pycharm\_jb_unittest_runner.py
+Python 路径为： [&apos;E:\\PycharmProjects\\PyStudyBase&apos;, &apos;C:\\Program Files\\JetBrains\\PyCharm 2017.1.4\\helpers\\pycharm&apos;, &apos;C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python36-32\\python36.zip&apos;, &apos;C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python36-32\\DLLs&apos;, &apos;C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python36-32\\lib&apos;, &apos;C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python36-32&apos;, &apos;C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python36-32\\lib\\site-packages&apos;, &apos;E:\\PycharmProjects\\PyStudyBase&apos;] 
+</code></pre><ol>
+<li>import sys引入python标准库中的sys.py模块；这是引入某一模块的方法。</li>
+<li>sys.argv是一个包含命令行参数的列表。</li>
+<li>sys.path包含了一个python解释器自动查找所需模块的路径的列表。</li>
+</ol>
+<h1 id="import-语句"><a href="#import-语句" class="headerlink" title="import 语句"></a>import 语句</h1><p>想使用python源文件，只需要在另一个源文件中执行import语句，语法如下：</p>
+<pre><code>import module1[, module2[,... moduleN]
+</code></pre><p>当解释器遇到import语句的时候，如果模块在当前的搜索路径就会被导入。<br>搜索路径是一个解释器会先进行搜索所在目录的列表，如果想要导入模块support，需要把命令放在脚本的顶端：</p>
+<p>support.py 文件代码为：</p>
+<pre><code>#!/usr/bin/python3
+# Filename: support.py
+
+def print_func( par ):
+print (&quot;Hello : &quot;, par)
+return
+</code></pre><p>test.py 引入 support 模块：</p>
+<pre><code>#!/usr/bin/python3
+# Filename: test.py
+
+# 导入模块
+import support
+
+# 现在可以调用模块里包含的函数了
+support.print_func(&quot;Runoob&quot;)
+</code></pre><p>以上实例输出结果：</p>
+<pre><code>Hello :  Runoob
+</code></pre><p>一个模块只会被导入一次，不管你执行了多少次import，这样可以防止导入模块被一遍又一遍地执行。<br>当我们使用import语句的时候，python解释器是怎么找到对应的文件的呢？？<br>这就涉及到python的搜索路径，搜索路径是由一系列目录名组成的，python解释器就依次从这些目录中去寻找所需要引入的模块。这看起来很像环境变量，事实上，也可通过定义环境变量的方式来确定搜索路径。<br>搜索路径在python编译或者安装的时候确定的，安装新的库应该也会修改。搜索路径被存储在sys模块中的path变量，做一个简单的实验，在交互式解释器中，输入以下代码：</p>
+<pre><code>&gt;&gt;&gt; import sys
+&gt;&gt;&gt; sys.path
+[&apos;&apos;, &apos;C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python36-32\\python36.zip&apos;, &apos;C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python36-32\\DLLs&apos;, &apos;C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python36-32\\lib&apos;, &apos;C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python36-32&apos;, &apos;C:\\Users\\Administrator\\AppData\\Local\\Programs\\Python\\Python36-32\\lib\\site-packages&apos;]
+&gt;&gt;&gt;
+</code></pre><p>sys.path输出是一个列表，其中第一项是空串“”，代表当前目录（若是从一个脚本中打印出来的话，可以更清楚地看出是哪个目录），亦即我们执行python解释器的目录（对于脚本的话就是运行的脚本所在的目录）。</p>
+<p>因此若像我一样在当前目录下存在与要引入模块同名的文件，就会把要引入的模块屏蔽掉。</p>
+<p>了解搜索路径的概念，就可以在脚本中修改sys.path来引入一些不在搜索路径中的模块。</p>
+<p>现在，在解释器的当前目录或者sys.path中的一个目录来创建一个fibo.py的文件，代码如下：</p>
+<pre><code># 斐波那契(fibonacci)数列模块
+
+def fib(n):# 定义到 n 的斐波那契数列
+a, b = 0, 1
+while b &lt; n:
+print(b, end=&apos; &apos;)
+a, b = b, a+b
+print()
+
+def fib2(n): # 返回到 n 的斐波那契数列
+result = []
+a, b = 0, 1
+while b &lt; n:
+result.append(b)
+a, b = b, a+b
+return result
+</code></pre><p>然后进入Python解释器，使用下面的命令导入这个模块：</p>
+<pre><code>import fibo
+</code></pre><p>这样做并没有把直接定义在fibo中的函数名称写入到当前符号表里，只是把模块fibo的名字写到了那里。</p>
+<p>可以使用模块名称来访问函数：</p>
+<pre><code>#!/usr/bin/python3
+
+import fibo
+
+print(fibo.fib(1000))
+print(fibo.fib2(100))
+</code></pre><p>如果你打算经常使用一个函数，你可以把它赋给一个本地的名称：</p>
+<pre><code>fib = fibo.fib
+print(fib(1000))
+</code></pre><p>输出结果如下：</p>
+<pre><code>1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 
+[1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 
+</code></pre><h1 id="from…import语句"><a href="#from…import语句" class="headerlink" title="from…import语句"></a>from…import语句</h1><p>Python的from语句让你从模块中导入一个指定的部分到当前命名空间中，语法如下：</p>
+<pre><code>from modname import name1[, name2[, ... nameN]]
+</code></pre><p>例如，要导入模块 fibo 的 fib 函数，使用如下语句：</p>
+<pre><code>from fibo import fib, fib2
+fib(500)
+1 1 2 3 5 8 13 21 34 55 89 144 233 377
+</code></pre><p>这个声明不会把整个fibo模块导入到当前的命名空间中，它只会将fibo里的fib函数引入进来。</p>
+<h1 id="From…import-语句"><a href="#From…import-语句" class="headerlink" title="From…import* 语句"></a>From…import* 语句</h1><p>把一个模块的所有内容都导入到当前的命名空间也是可行的。然而这种声明不该被多次使用。</p>
+<h1 id="深入模块"><a href="#深入模块" class="headerlink" title="深入模块"></a>深入模块</h1><p>模块除了方法定义之外，还可以包括可执行的代码。这些代码一般用来初始化这个模块。这些代码只有在第一次被导入的时候才会被执行。每个模块有各自独立的符号表，在模块内部为所有的函数当作全局符号表来使用。<br>所以，模块的作者可以放心大胆的在模块内部使用这些全局变量，而不用担心把其他用户的全局变量搞乱。</p>
+<p>从另一个方面，当你确定知道你在做什么的电话，你也可以通过modname.itemname这样的表示法来访问模块内的函数。</p>
+<p>模块是可以导入其他模块的，在一个模块（或者脚本，或者其他地方）的最前面是用import来导入一个模块，当然这只是一个惯例，而不是强制的，被导入的模块的名称将被放入当前操作的模块的符号表中。</p>
+<p>还有一种导入的方法，可以使用import直接把模块内（函数，变量的）名称导入到当前操作模块。比如：</p>
+<pre><code>&gt;&gt;&gt; from fibo import fib, fib2
+&gt;&gt;&gt; fib(500)
+1 1 2 3 5 8 13 21 34 55 89 144 233 377
+</code></pre><p>这种导入的方法不会把被导入的模块的名称放在当前的字符表中（所以在这个例子里面，fibo这个名称是没有定义的）。这还有一种方法，可以一次性的把模块中的所有函数或者变量名称都导入到当前模块的字符表中。</p>
+<pre><code>&gt;&gt;&gt; from fibo import *
+&gt;&gt;&gt; fib(500)
+1 1 2 3 5 8 13 21 34 55 89 144 233 377
+</code></pre><p>这将把所有的名字都导入进来，但是那些由单一下划线（_）开头的名字不在此例。大多数情况，Python程序员不是用这种方法，因为引入的其他来源的命名，很可能覆盖了自己已有的定义。</p>
+<h1 id="—name-属性"><a href="#—name-属性" class="headerlink" title="—name_属性"></a>—name_属性</h1><p>一个模块被另一个程序第一次引入的时候，其主程序将被运行，如果我们想在模块被引入的时候，模块中的某一程序块不被执行，我么可以使用<em>name</em>属性来使该程序块仅在该模块自身运行时执行。</p>
+<pre><code>#!/usr/bin/python3
+# Filename: support.py
+
+if __name__ == &apos;__main__&apos;:
+   print(&apos;程序自身在运行&apos;)
+else:
+   print(&apos;我来自另一模块&apos;)
+</code></pre><p>运行输出如下：</p>
+<pre><code>程序自身在运行
+</code></pre><p>将support.py文件import到另一个文件中：</p>
+<pre><code>#!/usr/bin/python3
+
+import support
+</code></pre><p>此时运行结果如下：</p>
+<pre><code>我来自另一模块
+</code></pre><p><strong>说明：</strong> 每一个模块都有一个<em>name</em>属性，当其值是”<em>main</em>“时候，表明该模块自身在运行，否是就是被引入。</p>
+<h1 id="dir-函数"><a href="#dir-函数" class="headerlink" title="dir()函数"></a>dir()函数</h1><p>内置的函数dir()可以找到模块内定义的所有名称，并且以一个字符串列表的形式返回：</p>
+<pre><code>#!/usr/bin/python3
+
+import fibo
+print(dir(fibo))
+
+import sys
+print(dir(sys))
+</code></pre><p>运行结果如下：</p>
+<pre><code>[&apos;__builtins__&apos;, &apos;__cached__&apos;, &apos;__doc__&apos;, &apos;__file__&apos;, &apos;__loader__&apos;, &apos;__name__&apos;, &apos;__package__&apos;, &apos;__spec__&apos;, &apos;fib&apos;, &apos;fib2&apos;]
+[&apos;__displayhook__&apos;, &apos;__doc__&apos;, &apos;__excepthook__&apos;, &apos;__interactivehook__&apos;, &apos;__loader__&apos;, &apos;__name__&apos;, &apos;__package__&apos;, &apos;__spec__&apos;, &apos;__stderr__&apos;, &apos;__stdin__&apos;, &apos;__stdout__&apos;, &apos;_clear_type_cache&apos;, &apos;_current_frames&apos;, &apos;_debugmallocstats&apos;, &apos;_enablelegacywindowsfsencoding&apos;, &apos;_getframe&apos;, &apos;_git&apos;, &apos;_home&apos;, &apos;_xoptions&apos;, &apos;api_version&apos;, &apos;argv&apos;, &apos;base_exec_prefix&apos;, &apos;base_prefix&apos;, &apos;builtin_module_names&apos;, &apos;byteorder&apos;, &apos;call_tracing&apos;, &apos;callstats&apos;, &apos;copyright&apos;, &apos;displayhook&apos;, &apos;dllhandle&apos;, &apos;dont_write_bytecode&apos;, &apos;exc_info&apos;, &apos;excepthook&apos;, &apos;exec_prefix&apos;, &apos;executable&apos;, &apos;exit&apos;, &apos;flags&apos;, &apos;float_info&apos;, &apos;float_repr_style&apos;, &apos;get_asyncgen_hooks&apos;, &apos;get_coroutine_wrapper&apos;, &apos;getallocatedblocks&apos;, &apos;getcheckinterval&apos;, &apos;getdefaultencoding&apos;, &apos;getfilesystemencodeerrors&apos;, &apos;getfilesystemencoding&apos;, &apos;getprofile&apos;, &apos;getrecursionlimit&apos;, &apos;getrefcount&apos;, &apos;getsizeof&apos;, &apos;getswitchinterval&apos;, &apos;gettrace&apos;, &apos;getwindowsversion&apos;, &apos;hash_info&apos;, &apos;hexversion&apos;, &apos;implementation&apos;, &apos;int_info&apos;, &apos;intern&apos;, &apos;is_finalizing&apos;, &apos;maxsize&apos;, &apos;maxunicode&apos;, &apos;meta_path&apos;, &apos;modules&apos;, &apos;path&apos;, &apos;path_hooks&apos;, &apos;path_importer_cache&apos;, &apos;platform&apos;, &apos;prefix&apos;, &apos;set_asyncgen_hooks&apos;, &apos;set_coroutine_wrapper&apos;, &apos;setcheckinterval&apos;, &apos;setprofile&apos;, &apos;setrecursionlimit&apos;, &apos;setswitchinterval&apos;, &apos;settrace&apos;, &apos;stderr&apos;, &apos;stdin&apos;, &apos;stdout&apos;, &apos;thread_info&apos;, &apos;version&apos;, &apos;version_info&apos;, &apos;warnoptions&apos;, &apos;winver&apos;]
+</code></pre><p>如果没有给定参数，那么dir()函数会罗列出当前定义的所有的属性。</p>
+<h1 id="标准模块"><a href="#标准模块" class="headerlink" title="标准模块"></a>标准模块</h1><p>Python本身带着一些标准的模块库，在Python库参考文档中将会介绍到（就是后面的“库参考文档”）。</p>
+<p>有些模块直接被构建在解析器里面，这些虽然不是一些语言内置的功能功能，但是他却能够很高效的使用，甚至系统级别调用都是没有问题的。这些组件会根据不同的操作系统进行不同形式的配置，比如winreg这个模块就只会提供给windows系统。</p>
+<p>应该注意到这有一个特别的模块sys，它内置在每一个Python解释其中。</p>
+<h1 id="包"><a href="#包" class="headerlink" title="包"></a>包</h1></div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://201216323.tech/2017/08/28/18：Python3-模块/" data-id="cj77f3w0i000po0sg8r4k6u1y" class="article-share-link">分享</a><div class="tags"><a href="/tags/Python/">Python</a></div><div class="post-nav"><a href="/2017/09/05/1：Android5-0中TextInputLayout和Snackbar的使用。/" class="pre"> 1：Android5.0中TextInputLayout和Snackbar的使用。</a><a href="/2017/08/27/17：Python3-数据结构/" class="next">17：Python3 数据结构</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://201216323.tech"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Android/" style="font-size: 15px;">Android</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/2：Android5-0中Material-Dialog、SwipeRefreshLayout等控件的使用。/"> 2：Android5.0中Material Dialog、SwipeRefreshLayout等控件的使用。</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/1：Android5-0中TextInputLayout和Snackbar的使用。/"> 1：Android5.0中TextInputLayout和Snackbar的使用。</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/28/18：Python3-模块/">18：Python3-模块</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/27/17：Python3-数据结构/">17：Python3 数据结构</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/27/16：Python3-函数/">16：Python3 函数</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/08/27/15：Python3-迭代器与生成器/">15：Python3 迭代器与生成器</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/27/14：Python3-循环语句/">14：Python3 循环语句</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/27/13：Python3-条件控制/">13：Python3 条件控制</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/12：Python3-编程第一步/">12：Python3 编程第一步</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/24/11：Python3-字典/">11：Python3 字典</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2017 <a href="/." rel="nofollow">常灿光个人博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
