@@ -1,0 +1,407 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>JNI开发----复习曾经学习过的C语言 | 常灿光个人博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">JNI开发----复习曾经学习过的C语言</h1><a id="logo" href="/.">常灿光个人博客</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">JNI开发----复习曾经学习过的C语言</h1><div class="post-meta">Sep 5, 2017<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><h1 id="第一部分jni介绍"><a href="#第一部分jni介绍" class="headerlink" title="第一部分jni介绍"></a>第一部分jni介绍</h1><h2 id="1-1什么是jni？"><a href="#1-1什么是jni？" class="headerlink" title="1.1什么是jni？"></a>1.1什么是jni？</h2><ul>
+<li>jni全称java native interface（java本地开发接口）</li>
+<li>相当于桥梁的作用，是一种协议</li>
+<li>通过jni就可以让java调用C语言或者C++代码，并且可以让C调用java代码</li>
+</ul>
+<h2 id="1-2为什么要用jni？"><a href="#1-2为什么要用jni？" class="headerlink" title="1.2为什么要用jni？"></a>1.2为什么要用jni？</h2><ul>
+<li>通过jni技术，可以扩展Android手机的功能</li>
+<li>弥补java语言功能的不足，利用jni调用C 、C++程序，可以执行大量的运算，视频的解码，Opengl的渲染等，这些操作都是java语言比较难处理的</li>
+<li>代码复用强，如ffmpeg，onencv(人脸识别库)，7-zip</li>
+<li>随着移动端技术的发展，越来越多的APP在开发中都需要底层复杂的处理，例如2016年最火热的直播技术，还有一些APP中的照片处理。。。学会这些技术刻不容缓</li>
+</ul>
+<h2 id="1-3怎么用jni？"><a href="#1-3怎么用jni？" class="headerlink" title="1.3怎么用jni？"></a>1.3怎么用jni？</h2><ul>
+<li>学习C、C++语言，能看懂一定的C语言代码</li>
+<li>利用ndk来（native develop kits）编写，并打包成.so文件供java代码调用</li>
+</ul>
+<p>接下来就主要来重新复习一下大学学的C语言。</p>
+<h1 id="第二部分C语言"><a href="#第二部分C语言" class="headerlink" title="第二部分C语言"></a>第二部分C语言</h1><h2 id="2-1开发工具"><a href="#2-1开发工具" class="headerlink" title="2.1开发工具"></a>2.1开发工具</h2><p>C语言的开发工具也比较多，大学的时候，写C语言代码经常使用<strong>VC++ 6.0</strong> 这个程序，这里使用 <strong>Dev-C++</strong> 这个程序来复习曾经学过的C语言，因为这款编辑器没有提示，所有的字母都需要自己手动打上去。</p>
+<p>接下来以一个简单的C语言程序开启C语言历程。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;  //#include 相当于Java的import，stdio 是标准输入输出英文的缩写，.h 是头文件的后缀，包含一些函数 </div><div class="line">#include&lt;stdlib.h&gt;  //标准的C语言函数库 </div><div class="line"> main()  //相当于java的public static void main(String args[])&#123;&#125; </div><div class="line">&#123;</div><div class="line"> 	printf(&quot;Hello world!\n&quot;);</div><div class="line"> 	system(&quot;calc&quot;);//打开电脑的计算器</div><div class="line">	system(&quot;mspaint&quot;);//打开电脑的画板</div><div class="line">	system(&quot;services.msc&quot;);//打开电脑的服务 </div><div class="line">  	system(&quot;pause&quot;); //让docs命令行执行pause命令，作用是控制台停留 </div><div class="line"> </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="2-2C语言基本类型"><a href="#2-2C语言基本类型" class="headerlink" title="2.2C语言基本类型"></a>2.2C语言基本类型</h2><blockquote>
+<p>回顾java的8大基本数据类型</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>byte</th>
+<th>short</th>
+<th>int</th>
+<th>char</th>
+<th>float</th>
+<th>double</th>
+<th>boolean</th>
+<th>long</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1个字节</td>
+<td>2个字节</td>
+<td>4个字节</td>
+<td>2个字节</td>
+<td>4个字节</td>
+<td>8个字节</td>
+<td>1个字节</td>
+<td>8个字节</td>
+</tr>
+</tbody>
+</table>
+<p>至于boolean类型占几个字节，这个有不同的说法，这里就不过多的说明了。</p>
+<blockquote>
+<p>C语言中数据类型</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>char</th>
+<th>int</th>
+<th>float</th>
+<th>double</th>
+<th>long</th>
+<th>short</th>
+<th>signed</th>
+<th>unsigned</th>
+<th>void</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1个字节</td>
+<td>4个字节</td>
+<td>4个字节</td>
+<td>8个字节</td>
+<td>4个字节</td>
+<td>2个字节</td>
+<td>4个字节</td>
+<td>4个字节</td>
+<td>空</td>
+</tr>
+</tbody>
+</table>
+<p>C语言中没有boolean、byte、String类型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line">/**</div><div class="line">计算类型的长度：sizeof(&quot;类型&quot;)返回int类型的长度</div><div class="line">占位符：%d </div><div class="line">printf(&quot;内容&quot;);</div><div class="line">*/</div><div class="line"> main()</div><div class="line">&#123;</div><div class="line">   printf(&quot;char类型的长度为：%d\n&quot;,sizeof(char)); </div><div class="line">   printf(&quot;int类型的长度为：%d\n&quot;,sizeof(int)); </div><div class="line">   printf(&quot;float类型的长度为：%d\n&quot;,sizeof(float)); </div><div class="line">   printf(&quot;double类型的长度为：%d\n&quot;,sizeof(double)); </div><div class="line">   printf(&quot;long类型的长度为：%d\n&quot;,sizeof(long));</div><div class="line">   printf(&quot;short类型的长度为：%d\n&quot;,sizeof(short));    </div><div class="line">   printf(&quot;signed类型的长度为：%d\n&quot;,sizeof(signed));   </div><div class="line">   printf(&quot;signed类型的长度为：%d\n&quot;,sizeof(unsigned));   </div><div class="line">   if(-1)&#123;</div><div class="line">        printf(&quot;true\n&quot;);       </div><div class="line">   &#125;else&#123;</div><div class="line">         printf(&quot;flase\n&quot;);     </div><div class="line">   &#125;         </div><div class="line">  system(&quot;pause&quot;); </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>java基本数据类和C语言的一些区别：</p>
+</blockquote>
+<ol>
+<li>Java中char类型的长度为2个字节,可以用来表示一个汉字，C语言中的长度为1个字节</li>
+<li>Java中long类型的长度为8个字节，C语言中的长度为4个字节,C99标准规定：long类型的规定，不小于整形。</li>
+<li>C语言中没有byte</li>
+<li>C语言中 boolean类型，0表示flase,非零表示true </li>
+<li>signed : 有符号：-128~127 = -2^7~ 2^7-1 </li>
+<li>unsigned：无符号 0~255 = 0~2^8-1 </li>
+<li>void: 无类型，代表任意类型 </li>
+</ol>
+<blockquote>
+<p>结果：</p>
+</blockquote>
+<p><img src="http://wx3.sinaimg.cn/mw690/b0d9a523ly1fb7qkm7v7dj20f7079aag0.jpg" alt="image"></p>
+<h2 id="2-3输入输出函数"><a href="#2-3输入输出函数" class="headerlink" title="2.3输入输出函数"></a>2.3输入输出函数</h2><h3 id="2-3-1C语言中的各种占位符"><a href="#2-3-1C语言中的各种占位符" class="headerlink" title="2.3.1C语言中的各种占位符"></a>2.3.1C语言中的各种占位符</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">int</th>
+<th style="text-align:center">long int</th>
+<th style="text-align:center">char</th>
+<th style="text-align:center">float</th>
+<th style="text-align:center">unsing</th>
+<th style="text-align:center">shor int</th>
+<th style="text-align:center">double</th>
+<th style="text-align:center">十六进制</th>
+<th style="text-align:center">八进制</th>
+<th style="text-align:center">字符串</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">整形</td>
+<td style="text-align:center">长整形</td>
+<td style="text-align:center">字符型</td>
+<td style="text-align:center">单精度浮点</td>
+<td style="text-align:center">无符号数</td>
+<td style="text-align:center">短整型</td>
+<td style="text-align:center">双精度浮点</td>
+<td style="text-align:center">十六进制</td>
+<td style="text-align:center">八进制</td>
+<td style="text-align:center">字符串</td>
+</tr>
+<tr>
+<td style="text-align:center">%d</td>
+<td style="text-align:center">%ld</td>
+<td style="text-align:center">%c</td>
+<td style="text-align:center">%f</td>
+<td style="text-align:center">%u</td>
+<td style="text-align:center">%hd</td>
+<td style="text-align:center">%lf</td>
+<td style="text-align:center">%x</td>
+<td style="text-align:center">%o</td>
+<td style="text-align:center">%s</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-3-2输出函数"><a href="#2-3-2输出函数" class="headerlink" title="2.3.2输出函数"></a>2.3.2输出函数</h3><blockquote>
+<p>程序1：使用各种占位符</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line">main()&#123;</div><div class="line">       </div><div class="line">       char c = &apos;A&apos;;</div><div class="line">       int i = 12345678;</div><div class="line">       long l = 123456789;</div><div class="line">       float f = 3.1415;</div><div class="line">       double d = 3.1415926535;</div><div class="line">       </div><div class="line">       printf(&quot;c==%c\n&quot;,c); //%c  - char</div><div class="line">       printf(&quot;i==%d\n&quot;,i); //%d  -  int</div><div class="line">       printf(&quot;l==%ld\n&quot;,l); //%ld - long int</div><div class="line">       printf(&quot;f==%.4f\n&quot;,f); //保留4位小数 ，默认6位小数 </div><div class="line">       printf(&quot;d==%.10lf\n&quot;,d); </div><div class="line">       printf(&quot;i==%hd\n&quot;,i); //%hd – 短整型</div><div class="line">       //C语言的数组的括号不能写在左边 </div><div class="line">       char cArray[]   = &#123;&apos;A&apos;,&apos;B&apos;&#125;;</div><div class="line">       printf(&quot;cArray内存地址==%#x\n&quot;,&amp;cArray); </div><div class="line">       </div><div class="line">       const char* text = &quot;I love you!&quot;;//或者char text[] = &quot;I love you!&quot;;</div><div class="line">       printf(&quot;text内容==%s\n&quot;,text); </div><div class="line">       </div><div class="line">       system(&quot;pause&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意</p>
+</blockquote>
+<ol>
+<li><p>在C语言中，默认保留小数点后六位，要想保留对应的位数，就需要在百分号后边加上“<strong>.数字</strong>” </p>
+</li>
+<li><p>短整型hd占据2个字节，最大值32767 ,2的15次方-1 ，如果在将整形强制以短整型输出的时候可能会造成精度的丢失，例如上面程序：</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">十进制表示：12345678</div><div class="line"> </div><div class="line">二进制表示： 101111000110000101001110 </div><div class="line">                     110000101001110</div><div class="line">最后实际取值是110000101001110这个二进制所代表的十进制数据，高位都被省略了。</div></pre></td></tr></table></figure>
+<ol>
+<li>不同的类型，要用不同的占位去输出，否则精度丢失。</li>
+<li>C语言的数组的括号不能写在左边，而在java中写在左右边都是可以的。</li>
+<li>C语言中是没有字符串类型的，可以使用指针或者字符数组代替</li>
+<li>十六进制%x输出的时候，可以输出地址，但使用%#x可以加上0x一起输出</li>
+</ol>
+<blockquote>
+<p>结果</p>
+</blockquote>
+<p><img src="http://wx3.sinaimg.cn/mw690/b0d9a523ly1fb7spyz375j20eu06k3yu.jpg" alt="image"></p>
+<h3 id="2-3-3输入函数"><a href="#2-3-3输入函数" class="headerlink" title="2.3.3输入函数"></a>2.3.3输入函数</h3><p>C语言中输入的时候主要用的就是 scanf函数，并使用&amp;i取变量i的地址来完成输入，以供后面使用。</p>
+<blockquote>
+<p>程序1：输入一个整形数字并输出</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line">main()&#123;</div><div class="line">       </div><div class="line">       int i ;</div><div class="line">       printf(&quot;请输入一个int类型数据\n&quot;); </div><div class="line">       scanf(&quot;%d&quot;,&amp;i);</div><div class="line">       printf(&quot;您输入的数字是：%d\n&quot;,i); </div><div class="line">       </div><div class="line">       //输入 </div><div class="line">       char cArray[] = &#123;&apos;B&apos;,&apos;r&apos;,&apos;u&apos;,&apos;c&apos;,&apos;e&apos;&#125;; </div><div class="line">       int j;//注意j的位置，不能放在for循环内部 </div><div class="line">       for( j=0;j&lt;5;j++)&#123;</div><div class="line">           printf(&quot;cArray[%d]==%c\n&quot;,j,cArray[j]);    </div><div class="line">       &#125;</div><div class="line">       printf(&quot;cArray==%s\n&quot;,cArray); </div><div class="line">       system(&quot;pause&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>结果</p>
+</blockquote>
+<p><img src="http://wx3.sinaimg.cn/mw690/b0d9a523ly1fb7t2tfkcfj20eq06uaa8.jpg" alt="image"></p>
+<blockquote>
+<p>程序2：输入一个字符串并输出</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line">main()</div><div class="line">&#123;</div><div class="line">       //输入 </div><div class="line">        char cArray[5]; </div><div class="line">        printf(&quot;请输入Hello：\n&quot;); </div><div class="line">       //在C语言中没有String 类型，但是可以用char数组来表示 </div><div class="line">       //scanf(&quot;%s&quot;,cArray); 可以加上&amp;也可以不加，因为都表示数组的地址</div><div class="line">       scanf(&quot;%s&quot;,&amp;cArray);</div><div class="line">       </div><div class="line">       int j;</div><div class="line">       for( j=0;j&lt;5;j++)&#123;</div><div class="line">           </div><div class="line">           printf(&quot;cArray[%d]==%c\n&quot;,j,cArray[j]);    </div><div class="line">                </div><div class="line">       &#125;</div><div class="line">       printf(&quot;cArray==%s\n&quot;,cArray); </div><div class="line">       system(&quot;pause&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>结果</p>
+</blockquote>
+<p><img src="http://wx1.sinaimg.cn/mw690/b0d9a523ly1fb7t7wy1plj20eh06k74d.jpg" alt="image"></p>
+<blockquote>
+<p>程序3：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line">main()&#123;</div><div class="line">       //输入 </div><div class="line">        char cArray[] = &#123;&apos;a&apos;,&apos;b&apos;,&apos;c&apos;,&apos;d&apos;,&apos;e&apos;,&apos;\0&apos;,&apos;a&apos;,&apos;b&apos;&#125;; //\0代表结束 </div><div class="line">         //数组是一块连续的内存空间 </div><div class="line">        printf(&quot;cArray==%s\n&quot;,cArray); </div><div class="line">      	const  char* text = &quot;I love you!!&quot;;</div><div class="line">        printf(&quot;text==%s\n&quot;,text); </div><div class="line">         printf(&quot;地址==%#x\n&quot;,&amp;text);//输出该指针的地址 </div><div class="line">        system(&quot;pause&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>字符数组中有一个\0，在输出这个数组的时候遇到\0代表结束，后面的字符将不会被输出</p>
+<blockquote>
+<p>结果</p>
+</blockquote>
+<p><img src="http://wx1.sinaimg.cn/mw690/b0d9a523ly1fb7u0dvgn0j20f6051t8p.jpg" alt="image"></p>
+<h2 id="2-4什么是指针-重点"><a href="#2-4什么是指针-重点" class="headerlink" title="2.4什么是指针?(重点)"></a>2.4什么是指针?(重点)</h2><p>指针用于存放地址，指针就是内存地址，内存地址就是指针。</p>
+<blockquote>
+<p>程序1：指针使用</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line">main()&#123;</div><div class="line">   </div><div class="line">   //定义一个int类型的变量i,并且赋值为10； </div><div class="line">   int i = 10;</div><div class="line">   //定义一个int类型的一级指针变量p </div><div class="line">   int* p; </div><div class="line">   //把i对应的地址赋值给p变量    </div><div class="line">   p = &amp;i; </div><div class="line">   </div><div class="line">   //指针取值*p :把p变量对应的地址的值取出来 </div><div class="line">   printf(&quot;*p===%d\n&quot;,*p); </div><div class="line">   *p = 100;//赋值 </div><div class="line">   printf(&quot;*p===%d\n&quot;,*p); </div><div class="line">       </div><div class="line">  system(&quot;pause&quot;);     </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>结果</p>
+</blockquote>
+<p><img src="http://wx2.sinaimg.cn/mw690/b0d9a523ly1fb7vexpc8jj20ci03qjra.jpg" alt="image"></p>
+<blockquote>
+<p>程序2：连连看小游戏作弊</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line"></div><div class="line">main()&#123;</div><div class="line">   </div><div class="line">   printf(&quot;玩游戏倒计时开始了:\n&quot;); </div><div class="line">   </div><div class="line">   int i ;</div><div class="line">   </div><div class="line">   for( i = 10;i &gt; 0 ;i--)&#123;</div><div class="line">      </div><div class="line">     _sleep(2000);</div><div class="line">     printf(&quot;还剩下多少秒:%d\n&quot;,i);    </div><div class="line">        </div><div class="line">   &#125;   </div><div class="line">  printf(&quot;恭喜大哥，你真厉害！\n&quot;); </div><div class="line">       </div><div class="line">  system(&quot;pause&quot;);     </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>当我们使用一些工具，可以获得i在输出时候的内存地址，通过修改其值，让i等于0；就可以迅速跳出for循环了，直接打印最后的输出语句，这就是利用指针来作弊。</p>
+<h2 id="2-5指针的深入理解-重点"><a href="#2-5指针的深入理解-重点" class="headerlink" title="2.5指针的深入理解(重点)"></a>2.5指针的深入理解(重点)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line">main()&#123;</div><div class="line">   </div><div class="line">  </div><div class="line">  int i = 100;</div><div class="line">  </div><div class="line">  int* p = &amp;i;</div><div class="line">  </div><div class="line">  //第一个实验：如果修改i值，p值有变化吗？</div><div class="line">//  printf(&quot;修改i值前，p的值(地址)是：%#x\n&quot;,p); </div><div class="line">//   i = 200;</div><div class="line">//  printf(&quot;修改i值后，p的值(地址)是：%#x\n&quot;,p); </div><div class="line">  </div><div class="line">  </div><div class="line">  //第二个实验： 如果修改p值，i值有变化吗？</div><div class="line">  </div><div class="line">//  printf(&quot;修改p值前，i的值是：%d\n&quot;,i); </div><div class="line">//   int j = 200;</div><div class="line">//   p = &amp;j;</div><div class="line">//  printf(&quot;修改p值后，i的值是：%d\n&quot;,i); </div><div class="line">  </div><div class="line">   //第三个实验：如果修改i值，*p值有变化吗？</div><div class="line">//  printf(&quot;修改i值前，*p的值是：%d\n&quot;,*p); </div><div class="line">//  i = 200;</div><div class="line">//  printf(&quot;修改i值后，*p的值是：%d\n&quot;,*p); </div><div class="line">  </div><div class="line">   //第四个实验： 如果修改*p值，i值有变化吗？</div><div class="line">  </div><div class="line">   printf(&quot;修改*p值前，i的值是：%d\n&quot;,i); </div><div class="line">  </div><div class="line">   *p =  200;</div><div class="line">   printf(&quot;修改*p值后，i的值是：%d\n&quot;,i); </div><div class="line">       </div><div class="line">  system(&quot;pause&quot;);     </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>如果修改i值，p值有变化吗？输出结果：（p指向i的地址，i值发生变化，对p没有影响，因为i的地址没有变化）</p>
+</blockquote>
+<p><img src="http://wx4.sinaimg.cn/mw690/b0d9a523ly1fb7w0v02cbj20ej03jdfs.jpg" alt="image"></p>
+<blockquote>
+<p>如果修改p值，i值有变化吗？输出结果：（修改p的值对i没有任何影响）</p>
+</blockquote>
+<p><img src="http://wx1.sinaimg.cn/mw690/b0d9a523ly1fb7w1gkk6tj20ac03mdfs.jpg" alt="image"></p>
+<blockquote>
+<p>如果修改i值，<em>p值有变化吗？输出结果：（和第一个一样，一个取得是地址，一个取得是值，地址是不会变的，但值变化了，</em>p就变化了）</p>
+</blockquote>
+<p><img src="http://wx1.sinaimg.cn/mw690/b0d9a523ly1fb7w1roeyoj20az03kq2w.jpg" alt="image"></p>
+<blockquote>
+<p>如果修改<em>p值，i值有变化吗？输出结果：（修改</em>p的值对i没有影响，所以不会发生变化）</p>
+</blockquote>
+<p><img src="http://wx3.sinaimg.cn/mw690/b0d9a523ly1fb7w256hwyj20f8040mx6.jpg" alt="image"></p>
+<blockquote>
+<p>指针和指针变量的关系</p>
+</blockquote>
+<ul>
+<li>指针就是<strong>地址</strong>，地址就是指针，地址就是<strong>内存单元</strong>的编号</li>
+<li>指针变量是存放地址的变量</li>
+</ul>
+<p>指针和指针变量是两个不同的概念，<strong>但是要注意</strong>： 通常我们叙述时会把指针变量简称为指针，实际它们含义并不一样。</p>
+<p>指针里存的是100,  此时指针指的是地址–具体<br>指针里存的是地址, 此时指针指的是指针变量 – 可变</p>
+<blockquote>
+<p>为什么要使用指针？？</p>
+</blockquote>
+<ul>
+<li>直接访问硬件 (opengl 显卡绘图)</li>
+<li>快速传递数据(指针表示地址)</li>
+<li>返回一个以上的值(返回一个数组或者结构体的指针)</li>
+<li>表示复杂的数据结构(结构体)</li>
+<li>方便处理字符串 </li>
+<li>指针有助于理解面向对象</li>
+</ul>
+<blockquote>
+<p>*号的三种含义</p>
+</blockquote>
+<ul>
+<li>数学运算符:  3 * 5 </li>
+<li>定义指针变量:  int*  p；</li>
+<li>指针运算符(取值):  *p (取p的内容(地址)在内存中的值)</li>
+</ul>
+<blockquote>
+<p>知识拓展 </p>
+</blockquote>
+<p>内存分很多单元,每个单元对应一个编号，每个编号对用着一个地址。地址是从从0开始的非负整数。<br>例如：0000~FFFF。</p>
+<p>XP操作系统 为什么只能显示3G内存？</p>
+<p>常用的XP系统都是32位的系统，就是说在所有程序（包括）系统本身运行的时候，最多能使用2的32次方的地址，大家可以自己算一下2的32次方就是4G，但问题是，系统里面除了内存还有其它设备啊，显卡硬盘之类的都是需要地址的，所以，留给内存使用的地址只有3G多一点，剩下的要保留给其它设备。</p>
+<h2 id="2-6利用指针互换数字"><a href="#2-6利用指针互换数字" class="headerlink" title="2.6利用指针互换数字"></a>2.6利用指针互换数字</h2><blockquote>
+<p>程序1：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line"></div><div class="line">/**</div><div class="line"> 互换两个数 </div><div class="line"></div><div class="line">*/</div><div class="line">void sitch(int a,int b)&#123;//传值无法改变值 </div><div class="line">   int temp = a;</div><div class="line">   a = b;</div><div class="line">   b = temp; </div><div class="line">   printf(&quot;sitch 中a地址===%#x\n&quot;,&amp;a); </div><div class="line">   printf(&quot;sitch 中b地址===%#x\n&quot;,&amp;b); </div><div class="line">     </div><div class="line">&#125;</div><div class="line"></div><div class="line">void sitch2(int* a,int* b)&#123;//传地址可以改变值 </div><div class="line">   int temp = *a;</div><div class="line">   *a = *b;</div><div class="line">   *b = temp; </div><div class="line">   printf(&quot;sitch 中a地址===%#x\n&quot;,a); </div><div class="line">   printf(&quot;sitch 中b地址===%#x\n&quot;,b); </div><div class="line">     </div><div class="line">&#125;</div><div class="line">main()&#123;</div><div class="line">   </div><div class="line">   int a = 100;</div><div class="line">   int b = 200;</div><div class="line">   printf(&quot;main中a地址===%#x\n&quot;,&amp;a); </div><div class="line">   printf(&quot;main中b地址===%#x\n&quot;,&amp;b); </div><div class="line">   printf(&quot;a===%d\n&quot;,a); </div><div class="line">   printf(&quot;b===%d\n&quot;,b); </div><div class="line">   sitch2(&amp;a,&amp;b);</div><div class="line">   printf(&quot;a===%d\n&quot;,a); </div><div class="line">   printf(&quot;b===%d\n&quot;,b);      </div><div class="line">  system(&quot;pause&quot;);     </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>因为指针指向的是变量的地址，所以可以通过地址改变变量的值。上面程序中通过sitch是不能改变Main方法中的a、b的值的，但是sitch2方法通过指针的操作确实可以的。</p>
+<blockquote>
+<p>结果：</p>
+</blockquote>
+<p><img src="http://wx3.sinaimg.cn/mw690/b0d9a523ly1fb809oi4mmj20de05bt8i.jpg" alt="image"></p>
+<blockquote>
+<p>程序2：调用没有返回值的函数来得到“返回值”</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line"></div><div class="line">/**</div><div class="line"> 通过close利用指针方法返回多个值 </div><div class="line"> close方法明明没有返回值，但用了指针就有了所谓的“返回值” </div><div class="line">*/</div><div class="line">void colse(int* a,int* b)&#123;</div><div class="line">    *a = 0;</div><div class="line">    *b = 0; </div><div class="line">      </div><div class="line">&#125;</div><div class="line">main()&#123;</div><div class="line">   </div><div class="line">   //一键关闭GPS和wifi</div><div class="line">   //1代表的是开，0代表是关闭 </div><div class="line">   int a = 1;</div><div class="line">   int b = 1; </div><div class="line">   colse(&amp;a,&amp;b);</div><div class="line">   printf(&quot;a===%d\n&quot;,a); </div><div class="line">   printf(&quot;b===%d\n&quot;,b); </div><div class="line">  system(&quot;pause&quot;);     </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>结果:a、b的值已经发生变化了</p>
+</blockquote>
+<p><img src="http://wx3.sinaimg.cn/mw690/b0d9a523ly1fb80hvars9j208x034t8j.jpg" alt="image"></p>
+<blockquote>
+<p>小总结</p>
+</blockquote>
+<p>通过被调函数修改主调函数普通变量的值</p>
+<ol>
+<li>实参必须是普通变量的地址</li>
+<li>形参必须是指针变量</li>
+<li>被调函数中通过修改 *形参名的方式修改主调函数相关变量的值</li>
+</ol>
+<h2 id="2-7多级指针"><a href="#2-7多级指针" class="headerlink" title="2.7多级指针"></a>2.7多级指针</h2><blockquote>
+<p>程序1：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line"></div><div class="line">/**</div><div class="line"> 多级指针 </div><div class="line"> 指针指向的是内存地址</div><div class="line"> 地址就是指针 </div><div class="line">*/</div><div class="line"></div><div class="line">main()&#123;</div><div class="line">  </div><div class="line">  //定义一个int类型的变量i,并且赋值为100； </div><div class="line">  int i = 100;  </div><div class="line">  //定义一个int类型的一级指针变量address1,并且把i的地址赋值给它 </div><div class="line">  int* address1 = &amp;i;</div><div class="line">  //定义一个int类型的二级指针变量 address2，并且把 address1对应的地址赋值给它 </div><div class="line">  int** address2 = &amp;address1;</div><div class="line">  //定义三级指针 </div><div class="line">  int*** address3 =  &amp;address2;</div><div class="line"></div><div class="line">  //多级指针取值 ***address3得到的值是100</div><div class="line">  printf(&quot;***address3==%d\n&quot;,***address3); </div><div class="line">  //直接给三级指针赋值</div><div class="line">  ***address3 = 2000;</div><div class="line">  printf(&quot;***address3==%d\n&quot;,***address3); </div><div class="line">       </div><div class="line">  system(&quot;pause&quot;);      </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>结果</p>
+</blockquote>
+<p><img src="http://wx2.sinaimg.cn/mw690/b0d9a523ly1fb810fkxquj20cl042jr8.jpg" alt="image"></p>
+<blockquote>
+<p>小总结</p>
+</blockquote>
+<p>一级指针一个<em> ，二级指针两个</em> ，三级指针三个<em> ，   我们在取该指针对应的值的时候，  只需要加上相应个数的</em>就可以取到该指针最原始的值。</p>
+<h2 id="2-8指针和数组的关系"><a href="#2-8指针和数组的关系" class="headerlink" title="2.8指针和数组的关系"></a>2.8指针和数组的关系</h2><p>数组是一块连续的内存空间，数组的地址和数组的首元素的地址相同。</p>
+<p>可以利用指针来获取数组的各个值。</p>
+<blockquote>
+<p>程序1：数组的基本使用</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line">main()&#123;</div><div class="line">  </div><div class="line">	int iArray[] = &#123;1,2,3,4,5&#125;  ;</div><div class="line"></div><div class="line">	printf(&quot;取整形数组的值\n&quot;);</div><div class="line">	printf(&quot;iArray[0]==%d\n&quot;,iArray[0]);  </div><div class="line">	printf(&quot;iArray[1]==%d\n&quot;,iArray[1]); </div><div class="line">	printf(&quot;\n&quot;);</div><div class="line"></div><div class="line">	printf(&quot;用指针的方式取内存地址\n&quot;);</div><div class="line">	printf(&quot;iArray + 0==%#x\n&quot;,iArray+0);</div><div class="line">	printf(&quot;iArray + 1==%#x\n&quot;,iArray+1);</div><div class="line">	printf(&quot;iArray + 2==%#x\n&quot;,iArray+2);  </div><div class="line">	printf(&quot;iArray + 3==%#x\n&quot;,iArray+3); </div><div class="line">	printf(&quot;\n&quot;);</div><div class="line">	 	  </div><div class="line"></div><div class="line">	printf(&quot;内存是一块连续的内存空间 \n&quot;);</div><div class="line">	printf(&quot;iArray地址==%#x\n&quot;,&amp;iArray);  </div><div class="line">	printf(&quot;iArray[0]地址==%#x\n&quot;,&amp;iArray[0]);  </div><div class="line">	printf(&quot;iArray[1]地址==%#x\n&quot;,&amp;iArray[1]); </div><div class="line">	printf(&quot;iArray[2]地址==%#x\n&quot;,&amp;iArray[2]); </div><div class="line">	printf(&quot;iArray[3]地址==%#x\n&quot;,&amp;iArray[3]); </div><div class="line">	printf(&quot;\n&quot;);</div><div class="line">   </div><div class="line">     </div><div class="line">	printf(&quot;用指针取值\n&quot;);</div><div class="line">	printf(&quot;iArray==%d\n&quot;,*iArray);  </div><div class="line">	printf(&quot;iArray[0]==%d\n&quot;,*iArray+0);</div><div class="line">	printf(&quot;iArray[1]==%d\n&quot;,*iArray+1);</div><div class="line">	printf(&quot;iArray[2]==%d\n&quot;,*iArray+2);  </div><div class="line">	printf(&quot;iArray[3]==%d\n&quot;,*iArray+3);  </div><div class="line">	printf(&quot;\n&quot;);</div><div class="line">     </div><div class="line">	printf(&quot;用指针取值\n&quot;);</div><div class="line">	printf(&quot;iArray[0]==%d\n&quot;,*(iArray+0));</div><div class="line">	printf(&quot;iArray[1]==%d\n&quot;,*(iArray+1));</div><div class="line">	printf(&quot;iArray[2]==%d\n&quot;,*(iArray+2));  </div><div class="line">	printf(&quot;iArray[3]==%d\n&quot;,*(iArray+3));  </div><div class="line">	system(&quot;pause&quot;);      </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>结果，上面是用的是int类型的数组，在+1时候，每次地址增加4个字节，如果是字符类型数组，将会增加1个字节</p>
+</blockquote>
+<p><img src="http://ww2.sinaimg.cn/mw690/b0d9a523jw1fb8sj9v4ytj20f90hbjuv.jpg" alt="image"></p>
+<blockquote>
+<p>程序2：用户输入数组并打印输出数组的各个值</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line">main()&#123;</div><div class="line">       </div><div class="line">       printf(&quot;请输入数组的长度：\n&quot;); </div><div class="line">      //1.用户输入数组的长度</div><div class="line">      int length;</div><div class="line">      scanf(&quot;%d&quot;,&amp;length);//输入的时候指向的是内存地址</div><div class="line">      printf(&quot;您输入的数组长度为：%d\n&quot;,length);</div><div class="line">     //2.根据用户输入的长度创建数组</div><div class="line">     int iArray[length]; </div><div class="line">     //3.让用户输入数组的值</div><div class="line">     int i;</div><div class="line">     for(i=0;i&lt;length;i++)&#123;</div><div class="line">        printf(&quot;请输入iArray[%d]的值:\n&quot;,i);  </div><div class="line">        //scanf(&quot;%d&quot;,&amp;iArray[i]); </div><div class="line">         scanf(&quot;%d&quot;,iArray+i);                 </div><div class="line">     &#125;                     </div><div class="line">     //4.把数组内容打印出来 </div><div class="line">     for(i=0;i&lt;length;i++)&#123;</div><div class="line">        printf(&quot;iArray[%d]==%d\n&quot;,i,*(iArray+i));  </div><div class="line">                       </div><div class="line">    &#125;  </div><div class="line">    system(&quot;pause&quot;);   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>结果</p>
+</blockquote>
+<p><img src="http://ww2.sinaimg.cn/mw690/b0d9a523jw1fb8szcoe05g20g40cyjrz.gif" alt="image"></p>
+<blockquote>
+<p>程序3：指针的长度 </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line"></div><div class="line">/**</div><div class="line"> 指针的长度 是8个字节 </div><div class="line">*/</div><div class="line"></div><div class="line">main()&#123;</div><div class="line">       </div><div class="line">     int* iPoint;</div><div class="line">     float* fPoint;</div><div class="line">     char* cPoint;</div><div class="line">     </div><div class="line">     printf(&quot;iPoint的长度==%d\n&quot;,sizeof(iPoint));  </div><div class="line">     printf(&quot;fPoint的长度==%d\n&quot;,sizeof(fPoint));  </div><div class="line">     printf(&quot;cPoint的长度==%d\n&quot;,sizeof(cPoint));  </div><div class="line">    </div><div class="line">    system(&quot;pause&quot;);   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>结果：这里我的开发工具编译环境是64位的，所以指针的长度是8个字节，如果用的是32位的，那么指针的长度就是4个字节。</p>
+</blockquote>
+<p><img src="http://ww2.sinaimg.cn/mw690/b0d9a523jw1fb8txxw0ccj20ek04gq3n.jpg" alt="image"></p>
+<h2 id="2-9静态内存分配"><a href="#2-9静态内存分配" class="headerlink" title="2.9静态内存分配"></a>2.9静态内存分配</h2><blockquote>
+<p>程序1：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line"></div><div class="line">/**</div><div class="line"> 静态内存分配 </div><div class="line">*/</div><div class="line"></div><div class="line">void func(int** address)&#123;</div><div class="line">     //定义int类型的i变量，并且赋值100 </div><div class="line">     int i = 100;</div><div class="line">     // 把i对应的地址赋值给 iPoint变量 </div><div class="line">     *address = &amp;i; </div><div class="line">&#125;</div><div class="line">main()&#123;</div><div class="line">      </div><div class="line">      //定义int类型的一级指针变量 iPoint</div><div class="line">     int* iPoint; </div><div class="line">     </div><div class="line">     func(&amp;iPoint); </div><div class="line">     printf(&quot;*iPoint===%d\n&quot;,*iPoint);</div><div class="line">     printf(&quot;*iPoint===%d\n&quot;,*iPoint);</div><div class="line">     printf(&quot;*iPoint===%d\n&quot;,*iPoint);</div><div class="line">     system(&quot;pause&quot;);   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>结果：程序运行结束后i被回收，所以再重复取*iPoint的值的时候都等于0.</p>
+</blockquote>
+<p><img src="http://ww4.sinaimg.cn/mw690/b0d9a523jw1fb8zhpgabdj20aq049gm5.jpg" alt="image"></p>
+<blockquote>
+<p>说明</p>
+</blockquote>
+<p><img src="http://ww4.sinaimg.cn/mw690/b0d9a523jw1fb8zg5gwe2j20tg0dkwhy.jpg" alt="image"></p>
+<h2 id="2-10动态内存分配"><a href="#2-10动态内存分配" class="headerlink" title="2.10动态内存分配"></a>2.10动态内存分配</h2><blockquote>
+<p>程序1：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line"></div><div class="line">/**</div><div class="line"> 动态内存分配 </div><div class="line">*/</div><div class="line"></div><div class="line">void func(int** address)&#123;</div><div class="line">     </div><div class="line">    int i = 100;</div><div class="line">     </div><div class="line">    int* temp;</div><div class="line">   </div><div class="line">   //malloc(int)-内存地址 </div><div class="line">    temp = (int*)malloc(sizeof(int)); //需要强转成int类型指针 </div><div class="line">    </div><div class="line">    //把i对应的值，赋值给 temp地址对应的值 </div><div class="line">    *temp = i;</div><div class="line">    //把address 对应的地址对应的值（还是一个地址）修改成 temp</div><div class="line">    *address = temp;</div><div class="line">    </div><div class="line">//    free(temp);   //释放内存  </div><div class="line">&#125;</div><div class="line">main()&#123;</div><div class="line">    //定义int类型的一级指针变量 iPoint</div><div class="line">    int* iPoint; </div><div class="line">     </div><div class="line">    func(&amp;iPoint); </div><div class="line">    printf(&quot;*iPoint===%d\n&quot;,*iPoint);</div><div class="line">    printf(&quot;*iPoint===%d\n&quot;,*iPoint);</div><div class="line">    printf(&quot;*iPoint===%d\n&quot;,*iPoint);</div><div class="line">    printf(&quot;*iPoint===%d\n&quot;,*iPoint);</div><div class="line">    system(&quot;pause&quot;);   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>结果就是iPoint的值全部都偶是100，但当执行free(temp)方法释放手动分配的内存空间的时候，输出结果将会是100，0，0，0。</p>
+<p>知识拓展</p>
+</blockquote>
+<p>动态内存和静态内存？？</p>
+<ul>
+<li>静态内存是程序编译执行后系统自动分配，由系统自动释放, 静态内存是栈分配的.</li>
+<li>动态内存是开发者手动分配的, 是堆分配的.  </li>
+</ul>
+<h2 id="2-11动态创建数组-重点"><a href="#2-11动态创建数组-重点" class="headerlink" title="2.11动态创建数组(重点)"></a>2.11动态创建数组(重点)</h2><blockquote>
+<p>程序1</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line"></div><div class="line">/**</div><div class="line"> 动态创建数组 </div><div class="line"> 输出函数 printf(); </div><div class="line"> 输入函数：scanf(&quot;占位符&quot;，内存地址); </div><div class="line"> realloc()重新分配内存 </div><div class="line">*/</div><div class="line"></div><div class="line"></div><div class="line">main()&#123;</div><div class="line">      </div><div class="line">// 动态数组的创建?</div><div class="line">printf(&quot;请输入您要创建数组的长度:\n&quot;);</div><div class="line">//1、让用户输入一个长度</div><div class="line">int length;</div><div class="line">scanf(&quot;%d&quot;,&amp;length);</div><div class="line">printf(&quot;您输入数组的长度为:%d\n&quot;,length);</div><div class="line">//2、根据长度，分配内存空间</div><div class="line">int* iArray = malloc(length*4);</div><div class="line">//3、让用户把数组中的元素依次的赋值；</div><div class="line">int i;</div><div class="line">for(i=0;i&lt;length;i++)&#123;</div><div class="line">   printf(&quot;请输入iArray[%d]的值：&quot;,i);   </div><div class="line">   scanf(&quot;%d&quot;,iArray+i);                </div><div class="line">&#125;</div><div class="line">//4、接收用户输入扩展数组长度</div><div class="line">int suppLength;</div><div class="line">printf(&quot;请输入您要扩展数组的长度:\n&quot;);</div><div class="line">scanf(&quot;%d&quot;,&amp;suppLength); </div><div class="line">printf(&quot;您要扩展数组的长度:%d\n&quot;,suppLength);</div><div class="line">//5、根据扩展的长度重新分配空间?</div><div class="line">//realloc</div><div class="line">iArray = realloc(iArray,(length+suppLength)*4);</div><div class="line">//6、把扩展长度的元素让用户赋值；</div><div class="line">for(i=length;i&lt;length+suppLength;i++)&#123;</div><div class="line">   printf(&quot;请输入iArray[%d]的值：&quot;,i);   </div><div class="line">   scanf(&quot;%d&quot;,iArray+i);                </div><div class="line">&#125;</div><div class="line">//7、输出数组?</div><div class="line">for(i=0;i&lt;length+suppLength;i++)&#123;</div><div class="line">   printf(&quot;iArray[%d]==%d\n&quot;,i,*(iArray+i));   </div><div class="line">                </div><div class="line">&#125;</div><div class="line">     system(&quot;pause&quot;);   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>结果</p>
+</blockquote>
+<p><img src="http://ww4.sinaimg.cn/mw690/b0d9a523jw1fbd713bg7rj20fx0cuq65.jpg" alt="image"></p>
+<h2 id="2-12其他重要的知识点"><a href="#2-12其他重要的知识点" class="headerlink" title="2.12其他重要的知识点"></a>2.12其他重要的知识点</h2><h3 id="2-12-1函数的指针-重点"><a href="#2-12-1函数的指针-重点" class="headerlink" title="2.12.1函数的指针(重点)"></a>2.12.1函数的指针(重点)</h3><blockquote>
+<p>程序1</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line"></div><div class="line">/**</div><div class="line"> 函数指针 </div><div class="line">*/</div><div class="line"></div><div class="line">//定义一个函数 </div><div class="line">int add(int x,int y)</div><div class="line">&#123;</div><div class="line">    return x + y;</div><div class="line">&#125; </div><div class="line"></div><div class="line">main()&#123;</div><div class="line">     //定义函数指针</div><div class="line">     int (*android)(int x,int y); </div><div class="line">     //函数指针赋值</div><div class="line">     android = add;</div><div class="line">     //使用函数指针 </div><div class="line">     int result = add(99,1);</div><div class="line">     printf(&quot;result==%d\n&quot;,result);</div><div class="line"></div><div class="line">     system(&quot;pause&quot;);   </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>结果</p>
+</blockquote>
+<p>输出结果result就是100，这里通过函数指针方法调用了add方法。</p>
+<h3 id="2-12-2Unition联合体"><a href="#2-12-2Unition联合体" class="headerlink" title="2.12.2Unition联合体"></a>2.12.2Unition联合体</h3><blockquote>
+<p>程序1</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line">//定义一个联合体，特点，所有的字段都是使用同一块内存空间； </div><div class="line">union Mix &#123;</div><div class="line">     long i; //4个字节 </div><div class="line">     int k; //4个字节 </div><div class="line">     char ii;//1个字节 </div><div class="line">&#125;;</div><div class="line">main() &#123; </div><div class="line">     </div><div class="line">       printf(&quot;mix:%d\n&quot;,sizeof(union Mix)); </div><div class="line">       //实验 </div><div class="line">        union Mix m;</div><div class="line">        m.k = 123;</div><div class="line">        m.i = 100;</div><div class="line">        printf(&quot;m.i=%d\n&quot;,m.i);         </div><div class="line">        printf(&quot;m.k=%d\n&quot;,m.k);            </div><div class="line">        system(&quot;pause&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>结果，通过sizeof函数可以看到占用4个字节，这是因为long类型和int类型占4个字节，取结构体中类型的最大字节数作为联合体所占字节数，因为占用的是同一块内存空间，所以m.k所附的值被m.i所附的值覆盖掉，最后的输出m.i和m.k都是100。</p>
+</blockquote>
+<p><img src="http://ww2.sinaimg.cn/mw690/b0d9a523jw1fbd7awfzb3j20ao03qmxj.jpg" alt="image"></p>
+<h3 id="2-12-3枚举"><a href="#2-12-3枚举" class="headerlink" title="2.12.3枚举"></a>2.12.3枚举</h3><blockquote>
+<p>程序</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line"></div><div class="line">/**</div><div class="line">枚举的值递增 </div><div class="line">默认首元素的值是0 </div><div class="line">*/</div><div class="line">enum WeekDay &#123;</div><div class="line">     Monday,Tuesday,Wednesday,Thursday,Friday,Saturday,Sunday</div><div class="line">&#125;;</div><div class="line"> </div><div class="line">main() &#123;</div><div class="line">       enum WeekDay day = Wednesday;</div><div class="line">       printf(&quot;%d\n&quot;,day);</div><div class="line">       system(&quot;pause&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>结果</p>
+</blockquote>
+<p><img src="http://ww2.sinaimg.cn/mw690/b0d9a523jw1fbd7k9xgj6j20ct03174m.jpg" alt="image"></p>
+<h3 id="2-12-4Typedef别名-重点"><a href="#2-12-4Typedef别名-重点" class="headerlink" title="2.12.4Typedef别名(重点)"></a>2.12.4Typedef别名(重点)</h3><blockquote>
+<p>程序</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">#include &lt;stdio.h&gt; </div><div class="line">#include &lt;stdlib.h&gt;</div><div class="line">typedef int i;</div><div class="line">typedef long l;</div><div class="line">typedef float f;</div><div class="line">main() &#123;</div><div class="line">       i m = 10;</div><div class="line">       l n = 123123123;</div><div class="line">       f s = 3.1415;</div><div class="line">       printf(&quot;%d\n&quot;, m);</div><div class="line">       printf(&quot;%ld\n&quot;, n);</div><div class="line">       printf(&quot;%f\n&quot;, s);</div><div class="line">       system(&quot;pause&quot;);       </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>结果，输出程序上面m、n、s的值，这个别名挺好的，可以java中没有这方法。</p>
+</blockquote>
+<h3 id="2-12-5结构体"><a href="#2-12-5结构体" class="headerlink" title="2.12.5结构体"></a>2.12.5结构体</h3><blockquote>
+<p>程序</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line">//定义结构</div><div class="line">struct student&#123;</div><div class="line">    int age;//4个字节 </div><div class="line">    float score;//4个字节 </div><div class="line">    char sex;   //1个字节 </div><div class="line">&#125; ;     </div><div class="line">main()&#123;</div><div class="line">       //使用结构体 </div><div class="line">       struct student stu = &#123;18,98.9,&apos;W&apos;&#125;;</div><div class="line">      //结构体取值</div><div class="line">	  printf(&quot;stu.age == %d\n&quot;,stu.age); </div><div class="line">      printf(&quot;stu.score == %.1f\n&quot;,stu.score); </div><div class="line">      printf(&quot;stu.sex == %c\n&quot;,stu.sex); </div><div class="line">      //结构体赋值</div><div class="line">	 </div><div class="line">	  stu.age=333;</div><div class="line">	  stu.score=123.445;</div><div class="line">	  stu.sex = &apos;M&apos;;</div><div class="line">	  printf(&quot;重新赋值\n&quot;);</div><div class="line">	  printf(&quot;stu.age == %d\n&quot;,stu.age); </div><div class="line">      printf(&quot;stu.score == %.1f\n&quot;,stu.score); </div><div class="line">      printf(&quot;stu.sex == %c\n&quot;,stu.sex); </div><div class="line">	  </div><div class="line">	  //结构体的长度</div><div class="line">	  printf(&quot;struct student结构体的长度是%d\n&quot;,sizeof(struct student));	</div><div class="line">      </div><div class="line">      system(&quot;pause&quot;); </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>结果,结构体的长度是12字节，如果float score换成double score那么就是24字节</p>
+</blockquote>
+<p><img src="http://ww1.sinaimg.cn/mw690/b0d9a523jw1fbd8bkamn2j20br06gmyb.jpg" alt="image"></p>
+<h3 id="2-12-6结构体指针-重点"><a href="#2-12-6结构体指针-重点" class="headerlink" title="2.12.6结构体指针(重点)"></a>2.12.6结构体指针(重点)</h3><blockquote>
+<p>程序</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line">#include&lt;stdio.h&gt;</div><div class="line">#include&lt;stdlib.h&gt;</div><div class="line"></div><div class="line">//结构体指针 </div><div class="line"></div><div class="line">//定义结构</div><div class="line">struct student&#123;</div><div class="line">    int age;//4个字节 </div><div class="line">    float score;//4个字节 </div><div class="line">    char sex;   //1个字节 </div><div class="line">&#125; ;     </div><div class="line">main()&#123;</div><div class="line">       //使用结构图</div><div class="line">       struct student stu = &#123;18,98.9,&apos;W&apos;&#125;;</div><div class="line">       </div><div class="line">       //结构体指针指向stu的地址 </div><div class="line">       struct student* point = &amp;stu;</div><div class="line">       //二级结构体指针 </div><div class="line">       struct student** point2 = &amp;point;</div><div class="line">       </div><div class="line">       //取值运算(*point).age  等价于 point-&gt;age ，一个箭头相当于一颗星 </div><div class="line">       printf(&quot;(*point).age ==%d\n&quot;,(*point).age ); </div><div class="line">       printf(&quot;point-&gt;age ==%d\n&quot;,point-&gt;age ); </div><div class="line">       printf(&quot;point-&gt;score ==%f\n&quot;,point-&gt;score ); </div><div class="line">       printf(&quot;point-&gt;sex ==%c\n&quot;,point-&gt;sex ); </div><div class="line">       printf(&quot;\n&quot;);</div><div class="line">       //赋值运算</div><div class="line">       point-&gt;age = 20; </div><div class="line">       point-&gt;score = 100;</div><div class="line">       point-&gt;sex = &apos;M&apos;;</div><div class="line">       printf(&quot;point-&gt;age ==%d\n&quot;,point-&gt;age ); </div><div class="line">       printf(&quot;point-&gt;age ==%d\n&quot;,point-&gt;age ); </div><div class="line">       printf(&quot;point-&gt;score ==%f\n&quot;,point-&gt;score ); </div><div class="line">       printf(&quot;point-&gt;sex ==%c\n&quot;,point-&gt;sex );  </div><div class="line">        printf(&quot;\n&quot;);</div><div class="line">       //二级结构体指针取值 (*point).age  等价于 point-&gt;age   所以  (**point).age 等价于 (*point)-&gt;age,，一个箭头相当于一颗星</div><div class="line">        printf(&quot;(**point2).age ==%d\n&quot;,(**point2).age ); </div><div class="line">        printf(&quot;(*point2)-&gt;age ==%d\n&quot;,(*point2)-&gt;age ); </div><div class="line">         printf(&quot;\n&quot;);</div><div class="line">        //二级指针赋值</div><div class="line">        (**point2).age = 2000;</div><div class="line">        printf(&quot;(**point2).age ==%d\n&quot;,(**point2).age ); </div><div class="line">        printf(&quot;(*point2)-&gt;age ==%d\n&quot;,(*point2)-&gt;age ); </div><div class="line">       system(&quot;pause&quot;); </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>结果,一个箭头相当于一颗星,一颗星是一级结构体，两颗星是二级结构体。</p>
+</blockquote>
+<p><img src="http://ww4.sinaimg.cn/mw690/b0d9a523jw1fbd8s6f029j20fk0ac0ur.jpg" alt="image"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>C语言的部分也就这么多，所有的东西大学学习期间都详细的学习过，当时还认真的的做过相关的图书馆what系统，但后来也就没怎么用，忘得也就差不多了，今天重新复习一下当初的C语言，为下一步Android中的jni做个基础。</p>
+<p>语言这东西时间长不用就忘记的差不多了。。。</p>
+<blockquote>
+<p>欢迎访问<a href="http://www.201216323.tech" target="_blank" rel="external">201216323.tech</a>来查看我的CSDN博客。</p>
+<p>欢迎关注我的个人微信公众号,快速查看我的最新文章。</p>
+</blockquote>
+<p><img src="http://img.blog.csdn.net/20161220174646569?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY2NnXzIwMTIxNjMyMw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="我的公众号图片" title="bruce常"></p>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://201216323.tech/2017/09/05/JNI开发-复习曾经学习过的C语言/" data-id="cj77mcaff0019acsgojmw4msf" class="article-share-link">分享</a><div class="tags"><a href="/tags/Android/">Android</a></div><div class="post-nav"><a href="/2017/09/05/JNI开发-一点一点搞清楚NDK开发的步骤/" class="pre">JNI开发----一点一点搞清楚NDK开发的步骤</a><a href="/2017/09/05/过去的2016，期待的2017，我与北京继续相伴。/" class="next">过去的2016，期待的2017，我与北京继续相伴。</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://201216323.tech"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Android/" style="font-size: 15px;">Android</a> <a href="/tags/Html5/" style="font-size: 15px;">Html5</a> <a href="/tags/友盟/" style="font-size: 15px;">友盟</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/熟练使用Android-Studio，亲自体验，持续更新。/">熟练使用Android Studio，亲自体验，持续更新。</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/MVP设计模式的一次深入探索和优化/">MVP设计模式的一次深入探索和优化</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/JNI开发-一点一点搞清楚NDK开发的步骤/">JNI开发----一点一点搞清楚NDK开发的步骤</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/JNI开发-复习曾经学习过的C语言/">JNI开发----复习曾经学习过的C语言</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/过去的2016，期待的2017，我与北京继续相伴。/">过去的2016，期待的2017，我与北京继续相伴。</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/事件总线之EventBus/">事件总线之EventBus</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/图片加载框架之Fresco/">图片加载框架之Fresco</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/图片加载框架之Picasso/">图片加载框架之Picasso</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/图片加载框架之Glide/">图片加载框架之Glide</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/个人收藏的一些很有性价比的Github链接/">个人收藏的一些很有性价比的Github链接</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2017 <a href="/." rel="nofollow">常灿光个人博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
