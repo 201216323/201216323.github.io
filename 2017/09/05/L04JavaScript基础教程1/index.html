@@ -1,0 +1,234 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>L04JavaScript基础教程1 | 常灿光个人博客</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">L04JavaScript基础教程1</h1><a id="logo" href="/.">常灿光个人博客</a><p class="description"></p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">L04JavaScript基础教程1</h1><div class="post-meta">Sep 5, 2017<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><p>北京的天气越来越冷的，早上冷的都不想从被窝里面起来，昨天下午高强度的健身导致身上肌肉非常的酸痛，但是，学习这件事情最怕的是有懈怠之心，所以就起床来学习并写下这篇文章<br>——2016年11月7日早上。言归正传。</p>
+<p><img src="http://p1.pstatp.com/large/110d0001c722c29daed6" alt="image"></p>
+<p>本节开始学习HTML5基础中的JavaSctipt。JavaScript基础总共有11个部分，这些课程以前也都学习接触过，但后来做了Android 开发也就没有在怎么用。</p>
+<blockquote>
+<p>下面是目录部分。</p>
+</blockquote>
+<ol>
+<li>JavaScript基础教程</li>
+<li>JavaScript语法详解</li>
+<li>JavaScript函数</li>
+<li>JavaScript异常处理和事件处理</li>
+<li>JavaScript DOM对象</li>
+<li>JavaScript事件详解</li>
+<li>JavaScript内置对象</li>
+<li>JavaScript DOM对象控制HTML元素详解</li>
+<li>JavaScript浏览器对象</li>
+<li>JavaScript面向对象详解</li>
+<li>Javascript瀑布流</li>
+</ol>
+<blockquote>
+<p>本节部分主要来学习前六部分。</p>
+</blockquote>
+<h3 id="第一部分：JavaScript基础教程"><a href="#第一部分：JavaScript基础教程" class="headerlink" title="第一部分：JavaScript基础教程"></a>第一部分：JavaScript基础教程</h3><h5 id="第一节、Javascript基础-介绍、实现、输出"><a href="#第一节、Javascript基础-介绍、实现、输出" class="headerlink" title="第一节、Javascript基础-介绍、实现、输出"></a>第一节、Javascript基础-介绍、实现、输出</h5><blockquote>
+<p>JavaScript介绍 ：</p>
+</blockquote>
+<p>1、JavaScript是互联网上最流行的脚本语言，这门语言可用于web和HTML，更可广泛用于服务器、pc端、移动端。</p>
+<p>2、JavaScript脚本语言：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">JavaScript是一种轻量级的编程语言。</div><div class="line">JavaScript是可插入HTML页面的编程代码。</div><div class="line">JavaScript插入HTML页面后，可由所有的浏览器执行。</div></pre></td></tr></table></figure>
+<p>3、JavaScript实现 ：</p>
+<blockquote>
+<p>JavaScript用法：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">HTML中的脚本必须位于&lt;script&gt;&lt;/script&gt;标签之间</div><div class="line">脚本可被放置在HTML页面的&lt;body&gt;和&lt;head&gt;部分中。</div></pre></td></tr></table></figure>
+<blockquote>
+<p>JavaScript标签：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在HTML中插入JavaScript，使用&lt;script&gt;标签</div><div class="line">在&lt;script&gt;&lt;/script&gt;之间书写代码</div></pre></td></tr></table></figure>
+<blockquote>
+<p>JavaScript使用限制：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">在HTML中，不限制脚本数量</div><div class="line">通常会把脚本放置于&lt;head&gt;标签中，以不干扰页面内容</div></pre></td></tr></table></figure>
+<p>4、JavaScript输出：</p>
+<blockquote>
+<p>JavaScript通常用来操作HTML。</p>
+<p>文档输出：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">document.writeln(&quot;&lt;h1&gt;标签h1&lt;/h1&gt;&quot;)</div></pre></td></tr></table></figure>
+<p>简单的测试程序来测试JavaScript操作HTML：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head lang=&quot;en&quot;&gt;</div><div class="line">&lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">&lt;title&gt;JavaScript基础教程&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;p id=&quot;pid&quot;&gt;Hello p&lt;/p&gt;</div><div class="line">&lt;script &gt;</div><div class="line">    document.getElementById(&quot;pid&quot;).innerHTML=&quot;javaScript&quot;;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<p><img src="http://p3.pstatp.com/large/10690002a8320c6ea391" alt="image"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">当不使用script标签的时候，应该输出Hello p，但在使用了script标签后这里替换掉了原来p标签中的内容，输出的是javaScript。</div></pre></td></tr></table></figure>
+<h5 id="第二节、Javascript基础-语法和注释"><a href="#第二节、Javascript基础-语法和注释" class="headerlink" title="第二节、Javascript基础-语法和注释"></a>第二节、Javascript基础-语法和注释</h5><blockquote>
+<p>JavaScript语法：</p>
+</blockquote>
+<p>1、JavaScript语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">JavaScript语句向浏览器发出的命令。语句的作用是告诉浏览器该做什么。</div></pre></td></tr></table></figure>
+<p>2、分号：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">语句之间的分割是分号（;）</div><div class="line">注意：分号是可选项，有时候看到不以分号隔开的。</div></pre></td></tr></table></figure>
+<p>3、JavaScript代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">按照编写顺序依次执行</div></pre></td></tr></table></figure>
+<p>4、标识符：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">JavaScript标识符必须以字母、下划线或美元符号开始。</div><div class="line">JavaScript关键字是不能作为标识符，这点和java也一样。</div></pre></td></tr></table></figure>
+<p>5、JavaScript对大小写敏感：</p>
+<p>6、空格：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">JavaScript会忽略到多余的空格</div></pre></td></tr></table></figure>
+<p>7、代码换行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">不要拆分JavaScript关键字来换行。</div></pre></td></tr></table></figure>
+<p>8、保留字：</p>
+<p><img src="http://p1.pstatp.com/large/106d0006b20a990f4f5e" alt="image"></p>
+<blockquote>
+<p>JavaScript注释：</p>
+</blockquote>
+<p>1、单行注释： //</p>
+<p>2、多行注释：/**/</p>
+<h5 id="第三节、Javascript基础-变量和数据类型"><a href="#第三节、Javascript基础-变量和数据类型" class="headerlink" title="第三节、Javascript基础-变量和数据类型"></a>第三节、Javascript基础-变量和数据类型</h5><blockquote>
+<p>1、Javascript变量：<br>var i$ = 10;</p>
+</blockquote>
+<p>var j = 10;</p>
+<p>var m = i$ + j;</p>
+<blockquote>
+<p>2、Javascript数据类型：</p>
+<ol>
+<li>字符串（String）</li>
+<li>数字（Number）</li>
+<li>布尔（Boolean）</li>
+<li>数组（Array）</li>
+<li>对象（Object）</li>
+<li>空（Null）</li>
+<li>未定义</li>
+<li>可以通过赋值为null的方式清除变量</li>
+</ol>
+</blockquote>
+<p>其实上面所提到的数据类型和Java语言中的数据类型都是一样的，毕竟都是处理逻辑的语言，肯定都有类似的关键字。</p>
+<h3 id="第二部分：JavaScript语法详解"><a href="#第二部分：JavaScript语法详解" class="headerlink" title="第二部分：JavaScript语法详解"></a>第二部分：JavaScript语法详解</h3><h5 id="第一节：Javascript语法-运算符-1"><a href="#第一节：Javascript语法-运算符-1" class="headerlink" title="第一节：Javascript语法-运算符(1)"></a>第一节：Javascript语法-运算符(1)</h5><p><img src="http://p3.pstatp.com/large/106900053a299600449a" alt="image"></p>
+<p>本节讲述1、2、3、</p>
+<p>简单测试程序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head lang=&quot;en&quot;&gt;</div><div class="line">&lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">&lt;title&gt;Javascript语法-运算符&lt;/title&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;p&gt;i=10,j=10,i+j=?&lt;/p&gt;</div><div class="line">    &lt;p id=&quot;sumid&quot;&gt;运算结果&lt;/p&gt;</div><div class="line">    &lt;button onclick=&quot;mysum()&quot;&gt;结果&lt;/button&gt;</div><div class="line">    &lt;script&gt;</div><div class="line">        function mysum()&#123;</div><div class="line">            var i=10;</div><div class="line">            var j=10;</div><div class="line">            var sum = i+j;</div><div class="line">            document.getElementById(&quot;sumid&quot;).innerHTML = sum;</div><div class="line">    &#125;</div><div class="line">    &lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<p><img src="http://p1.pstatp.com/large/106900053b60a8ac87b6" alt="image"></p>
+<p>当点击结果的时候，上面的p标签就会显示i+j的结果，这里只是练习一下function函数，其他的那些运算符和java中的运算符都差不多。</p>
+<h5 id="第二节：Javascript语法-运算符-2"><a href="#第二节：Javascript语法-运算符-2" class="headerlink" title="第二节：Javascript语法-运算符(2)"></a>第二节：Javascript语法-运算符(2)</h5><p>本节讲述上节中的4、5、6、</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">”==“和”===“的区别：</div><div class="line">var i=&quot;10&quot;;</div><div class="line">var j=10;</div><div class="line">var sum = i+j;</div><div class="line">document.write(i==j);</div><div class="line">上述返回true，但如果使用&quot;===&quot;来比较，返回就是false了。其他的涉及到两等和三等的运算符都是这样的。</div><div class="line"></div><div class="line">条件运算符：</div><div class="line">var i = 10;</div><div class="line">var j = -1;</div><div class="line">var sum = i + j;</div><div class="line">document.write(sum &gt; i ? &quot;大于&quot; : &quot;不大于&quot;);</div><div class="line">上面所示：其实也是三目运算符，这在java中同样也有，都一样。</div></pre></td></tr></table></figure>
+<h5 id="第三节：Javascript语法-条件语句if…else"><a href="#第三节：Javascript语法-条件语句if…else" class="headerlink" title="第三节：Javascript语法-条件语句if…else"></a>第三节：Javascript语法-条件语句if…else</h5><p>条件语句同java中的条件语句一样，这里就不过多的表述。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">var i = 11;</div><div class="line">if (i &gt; 10)&#123;</div><div class="line">    document.write(&quot;i大于10&quot;);</div><div class="line">&#125;else if(i &lt; 10)&#123;</div><div class="line">    document.write(&quot;i小于10&quot;)</div><div class="line">&#125;else&#123;</div><div class="line">    document.write(&quot;i等于10&quot;)</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h5 id="第四节：Javascript语法-条件语句switch"><a href="#第四节：Javascript语法-条件语句switch" class="headerlink" title="第四节：Javascript语法-条件语句switch"></a>第四节：Javascript语法-条件语句switch</h5><p>switch语句和java中的语法也是一样的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;script&gt;</div><div class="line">    var i = 11;</div><div class="line">    switch (i) &#123;</div><div class="line">        case 1:</div><div class="line">        break;</div><div class="line">        case 2:</div><div class="line">        break;</div><div class="line">        default :</div><div class="line">        break</div><div class="line">    &#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h5 id="第五节：Javascript语法-循环语句for循环"><a href="#第五节：Javascript语法-循环语句for循环" class="headerlink" title="第五节：Javascript语法-循环语句for循环"></a>第五节：Javascript语法-循环语句for循环</h5><p>for循环语句和java中的语法也是一样的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">for循环：</div><div class="line">&lt;script&gt;</div><div class="line">    var i=[1,2,3,4,5,6];</div><div class="line">    for(var j=0;j&lt;6;j++)&#123;</div><div class="line">        document.write(i[j]+&quot;、&quot;);</div><div class="line">    &#125;</div><div class="line">&lt;/script&gt;</div><div class="line">    for in 循环：</div><div class="line">    &lt;script&gt;</div><div class="line">        var i=[1,2,3,4,5,6];</div><div class="line">        var j=0;</div><div class="line">        for(j in i)&#123;</div><div class="line">            document.write(i[j]+&quot;+&quot;);</div><div class="line">    &#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h5 id="第六节：Javascript语法-循环语句while循环"><a href="#第六节：Javascript语法-循环语句while循环" class="headerlink" title="第六节：Javascript语法-循环语句while循环"></a>第六节：Javascript语法-循环语句while循环</h5><p>while循环语句和java中的语法也是一样的，分while循环和do…while循环。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">while循环：</div><div class="line">&lt;script&gt;</div><div class="line">    var i = 1;</div><div class="line">    while (i &lt; 10) &#123;</div><div class="line">        document.write(i + &quot;&lt;br/&gt;&quot;);</div><div class="line">    i++;</div><div class="line">    &#125;</div><div class="line">    &lt;/script&gt;</div><div class="line">    do.....while循环：</div><div class="line">    &lt;script&gt;</div><div class="line">        var i = 1;</div><div class="line">    do &#123;</div><div class="line">        document.write(i + &quot;&lt;br/&gt;&quot;);</div><div class="line">    i++;</div><div class="line">    &#125; while (i &lt; 10);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<h5 id="第七节：Javascript语法-跳转语句"><a href="#第七节：Javascript语法-跳转语句" class="headerlink" title="第七节：Javascript语法-跳转语句"></a>第七节：Javascript语法-跳转语句</h5><p>跳转语句和java中的语法也是一样的，分break和continue,break是跳出当前的循环，continue继续下一次循环。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">break跳转:</div><div class="line">&lt;script&gt;</div><div class="line">    for (var i = 0; i &lt; 10; i++) &#123;</div><div class="line">        if (i == 5) &#123;</div><div class="line">            break;</div><div class="line">        &#125;</div><div class="line">        document.write(i + &quot;+&quot;)</div><div class="line">    &#125;</div><div class="line">&lt;/script&gt;</div><div class="line">输出结果是：0+1+2+3+4+</div><div class="line">如果改成continue:</div><div class="line">输出结果则是：0+1+2+3+4+6+7+8+9+</div></pre></td></tr></table></figure>
+<h3 id="第五部分：JavaScript-DOM对象"><a href="#第五部分：JavaScript-DOM对象" class="headerlink" title="第五部分：JavaScript DOM对象"></a>第五部分：JavaScript DOM对象</h3><h5 id="5-1：Javascript-DOM简介"><a href="#5-1：Javascript-DOM简介" class="headerlink" title="5.1：Javascript-DOM简介"></a>5.1：Javascript-DOM简介</h5><blockquote>
+<p>1、HTML DOM：</p>
+</blockquote>
+<p>当网页被加载时，浏览器会创建页面的文档对象模型（Document Object Module）。<img src="http://p1.pstatp.com/large/11100003da296ef22f61" alt="image"></p>
+<p>可以通过文档对象模型，修改元素的内容，以及属性的具体值。</p>
+<blockquote>
+<p>2、DOM操作HTML：</p>
+<ul>
+<li>Javascript能够改变页面中的所有HTML元素。</li>
+<li>Javascript能够改变页面中的所有HTML属性。</li>
+<li>Javascript能够改变页面中的所有CSS样式。</li>
+<li>Javascript能够对页面中的所有事件做出反应。</li>
+</ul>
+</blockquote>
+<h5 id="5-2：Javascript-DOM操作HTML"><a href="#5-2：Javascript-DOM操作HTML" class="headerlink" title="5.2：Javascript-DOM操作HTML"></a>5.2：Javascript-DOM操作HTML</h5><p>1、改变HTML输出流：<br>注意：绝对不要在文档加载完成之后使用document.write()。这会覆盖该文档。</p>
+<p>2、寻找元素：</p>
+<p>通过id找到HTML元素。</p>
+<p>通过标签名找到HTML元素。</p>
+<p>3、改变HTML内容：</p>
+<p>使用属性：innerHTML。</p>
+<p>4、改变HTML属性：</p>
+<p>使用属性：attribute。</p>
+<hr>
+<p>代码和运行结果说明：</p>
+<p>下面的代码都是在HTML的body标签中演示的。</p>
+<blockquote>
+<p>1：代码，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;p&gt;Hello&lt;/p&gt;</div><div class="line">&lt;p&gt;Hello&lt;/p&gt;</div><div class="line">&lt;p&gt;Hello&lt;/p&gt;</div><div class="line">&lt;button onclick=&quot;ondemo()&quot;&gt;按钮&lt;/button&gt;</div><div class="line">&lt;script&gt;</div><div class="line">function ondemo() &#123;</div><div class="line">document.write(&quot;World !&quot;);</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>运行结果：</p>
+<p><img src="http://p3.pstatp.com/large/11100003e14e61d7ce54" alt="image"></p>
+<p>文档加载完成的时候页面显示的是三个p标签Hello，在执行document.write(“World !”)之后，输出的World!覆盖掉了原来的三个Hello。</p>
+<blockquote>
+<p>2：通过id来通过id 来改变HTML元素</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;p id=&quot;pid&quot;&gt;Hello&lt;/p&gt;</div><div class="line">&lt;p&gt;Hello&lt;/p&gt;</div><div class="line">&lt;p&gt;Hello&lt;/p&gt;</div><div class="line">&lt;button onclick=&quot;ondemo()&quot;&gt;按钮&lt;/button&gt;</div><div class="line">&lt;script&gt;</div><div class="line">function ondemo() &#123;</div><div class="line">document.getElementById(&quot;pid&quot;).innerHTML = &quot;aaaaa&quot;;</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>给第一个p标签指定一个id，<br>相应运行结果是：<br><img src="http://p3.pstatp.com/large/110e00046d06f8a795de" alt="image"></p>
+<blockquote>
+<p>3：通过标签名找到HTML元素：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;p &gt;Hello One&lt;/p&gt;</div><div class="line">&lt;p&gt;Hello Two&lt;/p&gt;</div><div class="line">&lt;p&gt;Hello Three&lt;/p&gt;</div><div class="line">&lt;button onclick=&quot;ondemo()&quot;&gt;按钮&lt;/button&gt;</div><div class="line">&lt;script&gt;</div><div class="line">function ondemo() &#123;</div><div class="line">        document.getElementsByTagName(&quot;p&quot;).item(2).innerHTML = &quot;aaaaa&quot;;</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>使用document.getElementsByTagName(“p”)来找到p标签，调用.item(2)方法来得到第三个p标签后赋值aaaaa。</p>
+<p>运行结果：</p>
+<p><img src="http://p2.pstatp.com/large/110e00046f62eda49140" alt="image"></p>
+<p>上面就是利用innerHTML 来改变标签的值的。</p>
+<blockquote>
+<p>4：改变a标签超链接的地址</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;a id=&quot;aid&quot; href=&quot;http://www.baidu.com&quot;&gt;百度&lt;/a&gt;</div><div class="line">&lt;button onclick=&quot;ondemo()&quot;&gt;按钮&lt;/button&gt;</div><div class="line">&lt;script&gt;</div><div class="line">function ondemo() &#123;</div><div class="line">        document.getElementById(&quot;aid&quot;).href=&quot;http://www.apkbus.com&quot;;</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<p><img src="http://p3.pstatp.com/large/11100003e8aa2d2c3d06" alt="image"></p>
+<p>点点击按钮的时候把原来的百度网址换成了安卓巴士的网址，这就是改变了原来的a标签的HTML属性</p>
+<h5 id="5-3：Javascript-DOM操作CSS"><a href="#5-3：Javascript-DOM操作CSS" class="headerlink" title="5.3：Javascript-DOM操作CSS"></a>5.3：Javascript-DOM操作CSS</h5><p>1、通过DOM对象改变CSS<br>语法：document.getElementById(id).style.property = new style</p>
+<p>测试程序：通过DOM来操作CSS，之前我们已经用过，使用DOM来改变CSS的背景。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head lang=&quot;en&quot;&gt;</div><div class="line">&lt;meta charset=&quot;UTF-8&quot;&gt;</div><div class="line">&lt;title&gt;&lt;/title&gt;</div><div class="line">&lt;link href=&quot;style.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;div id=&quot;div&quot;&gt;</div><div class="line">        Hello</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;button onclick=&quot;ondemo()&quot;&gt;改变文字颜色和背景颜色&lt;/button&gt;</div><div class="line">    &lt;script&gt;</div><div class="line">        function ondemo() &#123;</div><div class="line">            document.getElementById(&quot;div&quot;).style.backgroundColor = &quot;red&quot;;</div><div class="line">            document.getElementById(&quot;div&quot;).style.color = &quot;white&quot;;</div><div class="line">    &#125;</div><div class="line">    &lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>style.css文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">#div&#123;</div><div class="line">    width: 100px;</div><div class="line">    height: 100px;</div><div class="line">    background-color: aqua;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<p><img src="http://p3.pstatp.com/large/111100014d377a6d684e" alt="image"></p>
+<h5 id="5-4：Javascript-DOM-EventListener"><a href="#5-4：Javascript-DOM-EventListener" class="headerlink" title="5.4：Javascript-DOM EventListener"></a>5.4：Javascript-DOM EventListener</h5><blockquote>
+<p>1、DOM EventListener:</p>
+<ul>
+<li>方法：addEventListener():</li>
+<li>removeEventListener():</li>
+</ul>
+<p>2、addEventListener():</p>
+</blockquote>
+<p>方法用于向指定元素添加事件句柄</p>
+<blockquote>
+<p>3、removeEventListener():</p>
+</blockquote>
+<p>移出方法添加的事件句柄</p>
+<p>测试程序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;button id=&quot;btn&quot;&gt;按钮&lt;/button&gt;</div><div class="line">&lt;script&gt;</div><div class="line">document.getElementById(&quot;btn&quot;).addEventListener(&quot;click&quot;, hello());//添加句柄</div><div class="line">document.getElementById(&quot;btn&quot;).addEventListener(&quot;click&quot;, world());</div><div class="line">function hello() &#123;</div><div class="line">    alert(&quot;Hello!&quot;);</div><div class="line">&#125;</div><div class="line">function world() &#123;</div><div class="line">    alert(&quot;world !&quot;);</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>运行结果：</p>
+<p><img src="http://p3.pstatp.com/large/111200016b959b0a0aa8" alt="image"></p>
+<p>当移出第二个句柄的时候：<br>document.getElementById(“btn”).removeEventListener(“click”, world);</p>
+<p>运行结果：</p>
+<p><img src="http://p3.pstatp.com/large/111000040b66f01f3083" alt="image"></p>
+<p>这里在测试的时候发现一个问题，在添加句柄的时候document.getElementById(“btn”).addEventListener(“click”, world())，我们后面调用的world方法有括号，导致添加句柄在运行就会弹出对话框，这里是不应该有括号的，如果加上括号，在移出句柄的时候也有括号，就会导致移出句柄失败，切记，切记。再添加句柄的时候不要有括号。</p>
+<h3 id="第六部分：JavaScript事件详解"><a href="#第六部分：JavaScript事件详解" class="headerlink" title="第六部分：JavaScript事件详解"></a>第六部分：JavaScript事件详解</h3><h5 id="6-1、JS事件详解-事件流："><a href="#6-1、JS事件详解-事件流：" class="headerlink" title="6.1、JS事件详解-事件流："></a>6.1、JS事件详解-事件流：</h5><p>1、事件流：<br>描述的是在页面中接受事件的顺序。</p>
+<p>2、事件冒泡：<br>由最具体的元素接收，然后逐级向上传播至最不具体的元素的节点（文档）。</p>
+<p>3、事件捕获：<br>最不具体的节点先接收事件，而最具体的节点应该是最后接收事件。</p>
+<h5 id="6-2、JS事件详解-事件处理："><a href="#6-2、JS事件详解-事件处理：" class="headerlink" title="6.2、JS事件详解-事件处理："></a>6.2、JS事件详解-事件处理：</h5><p>1、HTML事件处理：<br>直接添加到HTML 结构中</p>
+<p>2、DOM0(零)级事件处理：<br>把一个函数赋值给一个事件处理程序属性</p>
+<p>3、DOM2级事件处理：</p>
+<ul>
+<li>addEventListener(“事件名”,”事件处理函数”,”布尔值”)；</li>
+<li>true：事件捕获</li>
+<li>false：事件冒泡</li>
+<li>removeEventListener();</li>
+</ul>
+<p>4、IE事件处理程序：</p>
+<ul>
+<li>attachEvent</li>
+<li>detachEvent</li>
+</ul>
+<p>测试程序：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&lt;div id=&quot;div&quot;&gt;</div><div class="line">&lt;button id=&quot;btn1&quot;&gt;按钮&lt;/button&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;script&gt;</div><div class="line">var btn1 = document.getElementById(&quot;btn1&quot;);</div><div class="line">if (btn1.addEventListener) &#123;</div><div class="line">    btn1.addEventListener(&quot;click&quot;, demo);</div><div class="line">&#125; else if (btn1.attachEvent) &#123;</div><div class="line">    btn1.attachEvent(&quot;onclick&quot;, demo);</div><div class="line">&#125; else &#123;</div><div class="line">    btn1.onclick = demo();</div><div class="line">&#125;</div><div class="line">function demo() &#123;</div><div class="line">    alert(&quot;hello&quot;);</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>要注意的是一个是click一个事onclick<br>运行结果都是弹出hello对话框。</p>
+<h5 id="6-3、JS事件详解-事件对象："><a href="#6-3、JS事件详解-事件对象：" class="headerlink" title="6.3、JS事件详解-事件对象："></a>6.3、JS事件详解-事件对象：</h5><blockquote>
+<p>1、事件对象：<br>在触发DOM事件的时候都会产生一个对象。</p>
+<p>2、事件对象Event：</p>
+<ul>
+<li>1）：type：获取事件类型。</li>
+<li>2）：target：获取事件目标。</li>
+<li>3）：stopPropagation();阻止事件冒泡。</li>
+<li>4）：preventDefault：阻止事件默认行为。</li>
+</ul>
+</blockquote>
+<p>测试程序：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;div&quot;&gt;</div><div class="line">&lt;button id=&quot;btn1&quot;&gt;按钮&lt;/button&gt;</div><div class="line">&lt;a href=&quot;http://www.baidu.com&quot; id=&quot;aid&quot;&gt;百度&lt;/a&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;script&gt;</div><div class="line">    document.getElementById(&quot;btn1&quot;).addEventListener(&quot;click&quot;, showType);</div><div class="line">    //可以添加这个鼠标移动的事件，效果和点击的事件一样</div><div class="line">    // document.getElementById(&quot;btn1&quot;).addEventListener(&quot;mouseover&quot;, showType);</div><div class="line">    document.getElementById(&quot;div&quot;).addEventListener(&quot;click&quot;, showDiv);</div><div class="line">    document.getElementById(&quot;aid&quot;).addEventListener(&quot;click&quot;,showA);</div><div class="line">    function showType(event) &#123;</div><div class="line">    alert(event.type);</div><div class="line">    // event.stopPropagation();//阻止事件的冒泡</div><div class="line">    &#125;</div><div class="line">    function showDiv(event) &#123;</div><div class="line">        alert(event.target);</div><div class="line">    &#125;</div><div class="line">    function showA(event)&#123;</div><div class="line">        event.stopPropagation();</div><div class="line">        event.preventDefault();</div><div class="line">    &#125;</div><div class="line">&lt;/script&gt;</div><div class="line">当没有阻止btn1事件冒泡的时候，执行结果是这样的：</div></pre></td></tr></table></figure>
+<p><img src="http://p1.pstatp.com/large/106b00054aaa11b5a611" alt="image"></p>
+<p>阻止btn1冒泡的时候运行结果是这样的：</p>
+<p><img src="http://p3.pstatp.com/large/11130003ec51ca6e4c28" alt="image"></p>
+<p>测试btn1阻止了事件的冒泡，就不会传给div了。</p>
+<p>同样的，在a标签事件中，阻止了a事件的冒泡，且阻止事件默认行为—-打开百度网页，所以在点击百度的时候不会有任何反应，结果如下：</p>
+<p><img src="http://p1.pstatp.com/large/111000059d5a928b949e" alt="image"></p>
+<p>总结：本节第五第六这两部分，应该算是javascript中比较重要且基础的部分，尤其是第六章javascript事件部分，感觉比较陌生，所以就按照课程，一 一的都写了代码，运行测试。</p>
+<p>接下来将继续学习javascript的内置对象、浏览器对象等内容，如果小编的这些javascript基础教程对你有一丝的帮助，请多多评论、收藏、转发。本片文章到此结束，下篇文章再会。</p>
+<p>欢迎关注我的个人技术公众号,快速查看我的最新文章。</p>
+<p><img src="http://img.blog.csdn.net/20161220174646569?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvY2NnXzIwMTIxNjMyMw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<p>时间：2016-11-11</p>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://201216323.tech/2017/09/05/L04JavaScript基础教程1/" data-id="cj77ly8jx001bs8sg59wbp1tj" class="article-share-link">分享</a><div class="tags"><a href="/tags/Html5/">Html5</a></div><div class="post-nav"><a href="/2017/09/05/L04JavaScript基础教程2/" class="pre">L04JavaScript基础教程2</a><a href="/2017/09/05/L03HTML5学习视频CSS3基础/" class="next">L03HTML5学习视频CSS3基础</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://201216323.tech"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/Python/" style="font-size: 15px;">Python</a> <a href="/tags/Android/" style="font-size: 15px;">Android</a> <a href="/tags/Html5/" style="font-size: 15px;">Html5</a> <a href="/tags/友盟/" style="font-size: 15px;">友盟</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/L04JavaScript基础教程2/">L04JavaScript基础教程2</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/L04JavaScript基础教程1/">L04JavaScript基础教程1</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/L03HTML5学习视频CSS3基础/">L03HTML5学习视频CSS3基础</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/L02HTML5基础02/">L02HTML5基础02</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/L02HTML5基础01/">L02HTML5基础01</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/L01HTML5开发前准备/">L01HTML5开发前准备</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/友盟统计的一次详细分析，记录自己深入阅读统计的过程/">友盟统计的一次详细分析，记录自己深入阅读统计的过程</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/Android倒计时效果/">Android倒计时效果</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/经受时间沉淀的15-个-Android-通用流行框架大全/">经受时间沉淀的15 个 Android 通用流行框架大全</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/09/05/网络爬虫技术Jsoup——爬到一切你想要的/">网络爬虫技术Jsoup——爬到一切你想要的</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2017 <a href="/." rel="nofollow">常灿光个人博客.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
